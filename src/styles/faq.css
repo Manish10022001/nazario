@@ -1,0 +1,115 @@
+/* Shop theme tokens */
+:root {
+  --Inkwell: #203639;
+  --Lunar-Eclipse: #3F4E4F;
+  --Au-Lait: #A27858;
+  --Creme-Brulee: #DCD7C9;
+  --Accent: #3F4EA4;
+
+  --Radius: 16px;
+  --CardBorder: 1px solid rgba(0,0,0,.08);
+  --CardShadow: 0 6px 24px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.06);
+}
+
+/* Page wrapper aligned to shop */
+.faq-body {
+  background: var(--Creme-Brulee);
+  color: var(--Inkwell);
+  min-height: 100vh;
+  letter-spacing: 0.01em;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* spacing under the fixed navbar (shop uses fixed top nav) */
+/* .faq-main { padding-top: 45px; } */
+
+/* White card section like shop product surfaces */
+.faq-section {
+  background: var(--Creme-Brulee);
+  border-radius: var(--Radius);
+  margin: 24px auto 60px;
+  padding: clamp(16px, 3vw, 32px);
+}
+
+/* Container widths mirror shop */
+.faq-section > .container {
+  width: 100%;
+  padding-left: clamp(16px, 4vw, 32px);
+  padding-right: clamp(16px, 4vw, 32px);
+}
+
+/* Title matches shop heading hierarchy */
+.faq-title { text-align: center; margin-bottom: 28px; }
+.faq-title h2 {
+  font-weight: 800;
+  font-size: clamp(22px, 2.6vw, 28px);
+  color: var(--Inkwell);
+  letter-spacing: -0.2px;
+  margin: 0;
+}
+
+/* details/summary accordions in shop style */
+.faq-details {
+  background: #fff;
+  border-radius: 14px;
+  border: var(--CardBorder);
+  box-shadow: 0 2px 12px rgba(0,0,0,.04);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: box-shadow .2s ease, border-color .2s ease;
+}
+.faq-details[open] {
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  border-color: rgba(0,0,0,.12);
+}
+
+/* Summary row */
+.faq-summary {
+  font-weight: 700;
+  font-size: 1.06rem;
+  color: var(--Inkwell);
+  padding: 18px 22px;
+  background: #fff;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.faq-summary::-webkit-details-marker { display: none; }
+
+/* Chevron using Bootstrap Icons, colored with Accent */
+.faq-summary::after {
+  content: "\f285"; /* bi-chevron-right */
+  font-family: "bootstrap-icons";
+  float: right;
+  font-size: 1.08em;
+  color: var(--Accent);
+  transition: transform .25s ease;
+}
+.faq-details[open] .faq-summary::after { transform: rotate(90deg); }
+
+/* Hover/focus states consistent with shop */
+.faq-details:not([open]) .faq-summary:hover {
+  background: #f7f8fb;
+  color: var(--Inkwell);
+}
+.faq-summary:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--Accent), #fff 40%);
+  outline-offset: 2px;
+  border-radius: 10px;
+}
+
+/* Answer body text aligns to shop body copy */
+.faq-answer {
+  color: var(--Lunar-Eclipse);
+  padding: 0 22px 18px 22px;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+.faq-details b { color: var(--Accent); font-weight: 700; }
+.faq-details a { color: var(--Accent); text-decoration: underline; }
+
+/* Responsive tuning */
+@media (max-width: 768px) {
+  .faq-section { padding: 18px 0 12px; }
+  .faq-summary, .faq-answer { padding-left: 14px; padding-right: 14px; }
+}

@@ -1,0 +1,332 @@
+:root {
+  --Inkwell: #203639;
+  --Lunar-Eclipse: #3f4e4f;
+  --Au-Lait: #a27858;
+  --Creme-Brulee: #dcd7c9;
+  --Accent: #3f4ea4;
+  --Border: rgba(0, 0, 0, 0.12);
+}
+
+/* /src/styles/globals.css additions */
+body {
+  padding-top: 72px;
+} /* Navbar height compensation (adjust if needed) */
+
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: var(--Creme-Brulee);
+  color: var(--Inkwell);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+}
+:focus-visible {
+  outline: 3px solid #9ec5fe !important;
+  outline-offset: 2px;
+}
+
+.subheader-sticky {
+  position: sticky;
+  top: 64px;
+  z-index: 20;
+  background: var(--Creme-Brulee);
+}
+@media (min-width: 768px) {
+  .subheader-sticky {
+    top: 80px;
+  }
+}
+
+/* /src/styles/globals.css additions */
+.card .fs-6 {
+  font-size: 0.95rem !important;
+}
+.badge-chip {
+  font-size: 0.7rem;
+}
+
+.card-prod {
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+.img-wrap {
+  position: relative;
+  aspect-ratio: 5/5;
+  overflow: hidden;
+}
+.img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+.card:hover .img-wrap img {
+  transform: scale(1.03);
+}
+.badge-chip {
+  padding: 0.125rem 0.5rem;
+  font-weight: 700;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.btn-vr {
+  background: linear-gradient(90deg, #138bff, #32ffc8 60%);
+  border: none;
+  color: #203639;
+  border-radius: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: box-shadow 0.3s, filter 0.2s;
+  animation: vrpulse 2s infinite;
+}
+.btn-vr:hover {
+  box-shadow: 0 2px 25px 3px #26fff7a8;
+  filter: brightness(1.07) saturate(1.2);
+}
+.btn-vr:focus-visible,
+.btn-vr:active {
+  box-shadow: 0 0 0 4px #a9f3ff99, 0 0 0 2px #32ffc8cc;
+  filter: brightness(1.1);
+}
+@keyframes vrpulse {
+  0% {
+    box-shadow: 0 0 0 0 #13f3ff44;
+  }
+  70% {
+    box-shadow: 0 0 0 18px #13f3ff05;
+  }
+  100% {
+    box-shadow: 0 0 0 0 #13f3ff44;
+  }
+}
+
+.btn-addtocart {
+  background: linear-gradient(90deg, #3f4ea4, #a27858 95%);
+  border: none;
+  color: #fff;
+  border-radius: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.btn-addtocart:hover {
+  background: linear-gradient(90deg, #3059bb, #d39569 90%);
+}
+.btn-buynow {
+  background: linear-gradient(90deg, #d94330, #ff6f61 95%);
+  border: none;
+  color: #fff;
+  border-radius: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 12px rgba(217, 67, 48, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-buynow:hover {
+  background: linear-gradient(90deg, #ff6f61, #d94330 95%);
+  box-shadow: 0 6px 16px rgba(255, 111, 97, 0.8);
+  cursor: pointer;
+}
+
+.recommendation-view-button {
+  background: linear-gradient(135deg, var(--Lunar-Eclipse), var(--Inkwell));
+  color: var(--Creme-Brulee);
+  border: none;
+  border-radius: 1.2rem;
+  padding: 0.5rem 1rem;
+  box-shadow: 0 4px 10px rgba(63, 78, 79, 0.4);
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+}
+
+.recommendation-view-button:hover,
+.recommendation-view-button:focus {
+  background: var(--Creme-Brulee);
+  color: var(--Lunar-Eclipse);
+  box-shadow: 0 6px 16px rgba(32, 54, 57, 0.6);
+  transform: translateY(-2px);
+  outline: none;
+  cursor: pointer;
+}
+
+.filter-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  z-index: 1054;
+}
+.filter-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+.filter-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(420px, 92vw);
+  background: #fff;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.18);
+  transform: translateX(100%);
+  transition: transform 0.25s;
+  display: flex;
+  flex-direction: column;
+  z-index: 1055;
+}
+.filter-panel.show {
+  transform: translateX(0);
+}
+.filter-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--Border);
+}
+.filter-body {
+  padding: 12px 16px 88px;
+  overflow: auto;
+}
+.filter-footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: min(420px, 92vw);
+  background: #fff;
+  border-top: 1px solid var(--Border);
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--Border);
+  border-radius: 9999px;
+  background: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip.selected {
+  border-color: var(--Inkwell);
+  box-shadow: 0 0 0 2px rgba(32, 54, 57, 0.14);
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  border: 1px solid var(--Border);
+  border-radius: 12px;
+  background: #fff;
+  cursor: pointer;
+}
+.tile.selected {
+  border-color: var(--Inkwell);
+  box-shadow: 0 0 0 2px rgba(32, 54, 57, 0.15);
+}
+.tile img {
+  width: 56px;
+  height: 40px;
+  object-fit: contain;
+}
+.tile span {
+  font-weight: 600;
+  font-size: 12px;
+}
+.input-mini {
+  width: 110px;
+  height: 36px;
+  border: 1px solid var(--Border);
+  border-radius: 10px;
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* More breathing room around cards */
+.product-col {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 18px;
+}
+
+/* Inner padding for the card */
+.card-prod {
+  border-radius: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Add padding to content area under image */
+.card .pt-2.pb-2.px-1 {
+  padding: 14px 14px !important;
+}
+
+/* Slightly more gap between grid items at md+ */
+@media (min-width: 768px) {
+  .row.products {
+    --bs-gutter-x: 1.25rem;
+    --bs-gutter-y: 1.25rem;
+  }
+}
+
+/* Make price/title breathe */
+.card .fs-6 {
+  font-size: 1rem !important;
+  line-height: 1.25rem;
+}
+.card .text-secondary.small {
+  opacity: 0.9;
+}
+
+/* Keep image radius consistent with card radius */
+.img-wrap {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* Allow a bit more width per card at just-above-lg widths */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .product-col {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+/* 5-up only on very wide screens (≥1400px) */
+@media (min-width: 1400px) {
+  .xl-col-5 {
+    flex: 0 0 20% !important;
+    max-width: 20% !important;
+  }
+}
+
+/* Slightly more inner padding for wider cards */
+@media (min-width: 992px) {
+  .card .d-flex.flex-column.flex-grow-1 {
+    padding: 16px 16px !important;
+  }
+}

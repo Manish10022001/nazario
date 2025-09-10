@@ -1,0 +1,163 @@
+/* ContactPage.css */
+
+/* Bootstrap Primary Color Override */
+:root {
+  --bs-primary: var(--Accent);
+  --bs-primary-rgb: 63, 78, 164;
+}
+
+/* Body Styling */
+body {
+  background-color: var(--Creme-Brulee) !important;
+  color: var(--Inkwell) !important;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif !important;
+}
+
+/* Custom Card Component */
+.custom-card {
+  background: #fff;
+  border: 1px solid var(--Border);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(63, 78, 164, 0.3);
+}
+
+/* Button Styling */
+.btn-primary {
+  --bs-btn-bg: var(--Accent);
+  --bs-btn-border-color: var(--Accent);
+  --bs-btn-hover-bg: var(--Lunar-Eclipse);
+  --bs-btn-hover-border-color: var(--Lunar-Eclipse);
+}
+
+/* Form Controls */
+.form-control {
+  border-color: var(--Border);
+}
+
+.form-control:focus {
+  border-color: var(--Accent);
+  box-shadow: 0 0 0 0.25rem rgba(63, 78, 164, 0.25);
+}
+
+/* Social Links */
+.social-link:hover {
+  background-color: var(--Accent) !important;
+  color: white !important;
+}
+
+/* Accent Border */
+.accent-border {
+  border-left: 4px solid var(--Accent) !important;
+}
+
+/* Text Color Overrides */
+.text-muted {
+  color: var(--Au-Lait) !important;
+}
+
+.text-dark {
+  color: var(--Inkwell) !important;
+}
+
+/* Contact Page Specific Styles */
+.contact-header {
+  color: var(--Inkwell);
+}
+
+.contact-description {
+  color: var(--Au-Lait);
+}
+
+.contact-form-container {
+  background: #fff;
+  border: 1px solid var(--Border);
+}
+
+.contact-icon-bg {
+  background-color: rgba(63, 78, 164, 0.1);
+}
+
+.contact-map-container {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  color: var(--Accent);
+}
+
+/* Success Message */
+.success-message {
+  background-color: rgba(46, 204, 113, 0.1);
+  border-color: var(--Accent);
+  color: var(--Inkwell);
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, var(--Accent), var(--Lunar-Eclipse));
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .custom-card {
+    padding: 1.5rem !important;
+  }
+
+  .contact-header {
+    font-size: 2rem !important;
+  }
+
+  .contact-form-container {
+    padding: 1.5rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .custom-card {
+    padding: 1rem !important;
+  }
+
+  .contact-header {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
