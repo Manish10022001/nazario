@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import "../styles/about.css";
+import "../styles/About.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 const About = () => {
