@@ -45,7 +45,7 @@ function Navbar({ brand = "Nazario" }) {
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
-                  to="/new-arrivals"
+                  to="/home"
                   style={({ isActive }) => ({
                     color: isActive
                       ? "var(--Accent-Color)"
@@ -53,13 +53,13 @@ function Navbar({ brand = "Nazario" }) {
                     textDecoration: isActive ? "underline" : "none", // Underline active link
                   })}
                 >
-                  New Arrivals
+                  Home
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink
                   className="nav-link"
-                  to="/men"
+                  to="/shopPage"
                   style={({ isActive }) => ({
                     color: isActive
                       ? "var(--Accent-Color)"
@@ -67,7 +67,7 @@ function Navbar({ brand = "Nazario" }) {
                     textDecoration: isActive ? "underline" : "none",
                   })}
                 >
-                  Men
+                  Shop
                 </NavLink>
               </li>
               <li className="nav-item">
