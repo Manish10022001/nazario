@@ -81,16 +81,38 @@ const Contact = () => {
     },
   ];
 
+  // import { Twitter } from "lucide-react"; // Keep Twitter icon for now
+
   const socialLinks = [
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    {
+      icon: Twitter,
+      href: "https://x.com/yourhandle", // Updated URL to X
+      label: "X",
+      color: "#000000", // X's new official black color
+    },
+    {
+      icon: Facebook,
+      href: "https://facebook.com/yourpage",
+      label: "Facebook",
+      color: "#1877F2",
+    },
+    {
+      icon: Instagram,
+      href: "https://instagram.com/yourhandle",
+      label: "Instagram",
+      color: "#E1306C",
+    },
+    {
+      icon: Linkedin,
+      href: "https://linkedin.com/in/yourprofile",
+      label: "LinkedIn",
+      color: "#0A66C2",
+    },
   ];
 
   return (
     <div className="contact-page">
-        <Navbar />
+      <Navbar />
       <div className="container py-2">
         {/* Header Section */}
         <div className="text-center mb-5">
@@ -229,18 +251,40 @@ const Contact = () => {
                   </button>
 
                   {/* Social Links */}
-                  <div className="d-flex gap-2">
+                  <div className="d-flex gap-2 align-items-center">
                     {socialLinks.map((social, index) => {
                       const IconComponent = social.icon;
+                      const color = social.color || "#6c757d"; // fallback gray
+
                       return (
                         <a
                           key={index}
                           href={social.href}
-                          className="btn btn-outline-secondary rounded-circle p-2 social-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           title={social.label}
-                          style={{ width: "38px", height: "38px" }}
+                          className="btn btn-outline-secondary rounded-circle p-0 d-flex justify-content-center align-items-center"
+                          style={{
+                            width: "38px",
+                            height: "38px",
+                            color: color,
+                            borderColor: color,
+                            transition:
+                              "background-color 0.3s, color 0.3s, border-color 0.3s",
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = color;
+                            e.currentTarget.style.color = "white";
+                            e.currentTarget.style.borderColor = color;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor =
+                              "transparent";
+                            e.currentTarget.style.color = color;
+                            e.currentTarget.style.borderColor = color;
+                          }}
                         >
-                          <IconComponent size={16} />
+                          <IconComponent size={18} />
                         </a>
                       );
                     })}
@@ -251,16 +295,10 @@ const Contact = () => {
           </div>
 
           <div className="col-lg-5">
-            <div className="position-sticky" style={{ top: "2rem" }}>
-              <div
-                className="custom-card contact-map-container"
-                style={{ height: "600px" }}
-              >
+            <div style={{ top: "2rem" }}>
+              <div className="custom-card contact-map-container">
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d76.9757047!3d20.7099891!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd7317b81370bb3%3A0xe935e97e13ed4c5c!2sNazario!5e0!3m2!1sen!2sin!4v1753257518229!5m2!1sen!2sin"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
@@ -334,14 +372,13 @@ const Contact = () => {
                 and personalized frame fitting.
               </p>
               <div className="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-                <button className="btn btn-light btn-lg rounded-pill px-4 fw-semibold">
+                <a
+                  href="tel:+917447706777"
+                  className="btn btn-light btn-lg rounded-pill px-4 fw-semibold"
+                >
                   <Phone size={18} className="me-2" />
                   Call Now
-                </button>
-                <button className="btn btn-outline-light btn-lg rounded-pill px-4 fw-semibold">
-                  <Mail size={18} className="me-2" />
-                  Email Us
-                </button>
+                </a>
               </div>
             </div>
           </div>

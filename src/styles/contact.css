@@ -83,10 +83,25 @@ body {
   background-color: rgba(63, 78, 164, 0.1);
 }
 
+/* ✅ Map container styles (integrated here) */
 .contact-map-container {
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  /* 👉 Default height for large screens */
+  height: 810px;
+  position: relative;
+}
+
+/* 👉 Make iframe fill the map container */
+.contact-map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 /* Loading Animation */
@@ -107,6 +122,13 @@ body {
 }
 
 /* Responsive Adjustments */
+@media (max-width: 992px) {
+  /* 👉 Reduce map height on tablets */
+  .contact-map-container {
+    height: 500px;
+  }
+}
+
 @media (max-width: 768px) {
   .custom-card {
     padding: 1.5rem !important;
@@ -119,6 +141,11 @@ body {
   .contact-form-container {
     padding: 1.5rem !important;
   }
+
+  /* 👉 Reduce map height on small tablets */
+  .contact-map-container {
+    height: 400px;
+  }
 }
 
 @media (max-width: 576px) {
@@ -128,6 +155,11 @@ body {
 
   .contact-header {
     font-size: 1.75rem !important;
+  }
+
+  /* 👉 Reduce map height on phones */
+  .contact-map-container {
+    height: 300px;
   }
 }
 
