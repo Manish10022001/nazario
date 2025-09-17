@@ -1,4 +1,4 @@
-/* === Main Product Image (Custom Only) === */
+/* === Main Product Image  === */
 
 .product-main-image-container {
   max-width: 600px;
@@ -51,4 +51,34 @@
   width: 48px;
   height: 48px;
   font-size: 0.9rem;
+}
+.review-section {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.review-section h2 {
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+}
+
+.review-star {
+  transition: fill 0.2s ease;
+}
+
+.review-star:hover,
+.review-star:focus {
+  fill: gold !important;
+  outline: none;
+  cursor: pointer;
+}
+
+.review-summary svg {
+  vertical-align: middle;
+}
+
+@media (max-width: 576px) {
+  .review-section {
+    padding: 1rem;
+  }
 }
