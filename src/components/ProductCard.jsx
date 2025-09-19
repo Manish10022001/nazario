@@ -116,7 +116,7 @@ function ProductCard({ product, onToggleLike }) {
 
         {/* Buttons (always stick bottom) */}
         <div className="mt-auto pt-2 d-grid gap-2">
-          <button className="btn btn-buynow fw-bold">+ Add to Cart</button>
+          <button className="btn btn-addtocart fw-bold">+ Add to Cart</button>
           <button
             className="btn btn-outline-secondary fw-bold"
             style={{
