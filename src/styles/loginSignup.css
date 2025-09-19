@@ -1,0 +1,205 @@
+:root {
+  --Inkwell: #203639;
+  --Lunar-Eclipse: #3f4e4f;
+  --Au-Lait: #a27858;
+  --Creme-Brulee: #dcd7c9;
+  --Accent: #3f4ea4;
+  --Border: rgba(0, 0, 0, 0.12);
+}
+
+/* Center the form */
+.loginSignupContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+}
+
+/* Form container with scroll and modern scrollbar */
+.myLoginSignupForm {
+  background: var(--Creme-Brulee);
+  border-radius: 10px;
+  padding: 2rem 3rem;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 2px 16px var(--Border);
+  overflow-y: auto;
+  max-height: 540px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(120, 120, 120, 0.4) transparent; /* Firefox */
+}
+
+/* Webkit scrollbar styles */
+.myLoginSignupForm::-webkit-scrollbar {
+  width: 6px;
+}
+
+.myLoginSignupForm::-webkit-scrollbar-thumb {
+  background-color: rgba(120, 120, 120, 0.4);
+  border-radius: 4px;
+}
+
+.myLoginSignupForm::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Close button */
+.btn-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--Inkwell);
+  cursor: pointer;
+  z-index: 2;
+  line-height: 1;
+}
+
+.btn-close::before {
+  content: "×";
+  display: block;
+  text-align: center;
+}
+
+/* Heading */
+.myLoginSignupForm h1 {
+  margin-bottom: 2rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: var(--Accent);
+  text-align: center;
+}
+
+/* Top login/signup toggle buttons */
+.loginSignupButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Primary button */
+.myLoginSignup {
+  background: linear-gradient(to right, var(--Accent), #42a5f5);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.myLoginSignup:hover {
+  background: linear-gradient(to right, #2d3d96, #2196f3);
+}
+
+/* Secondary (inactive) button */
+.loginSignupButtons button:not(.myLoginSignup) {
+  background: #f2f3f4;
+  color: var(--Inkwell);
+  padding: 12px 25px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginSignupButtons button:not(.myLoginSignup):hover {
+  background: #e0e0e0;
+}
+
+/* Form fields */
+.loginSignupForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Input styling */
+.loginSignupForm input {
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  outline-offset: 2px;
+  outline-color: var(--Accent);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  transition: border-color 0.3s ease;
+  background: white;
+}
+
+.loginSignupForm input:focus {
+  border-color: var(--Accent);
+  box-shadow: 0 0 5px rgba(63, 78, 164, 0.5);
+}
+
+/* Links like "Forgot password" */
+.loginSignupForm a {
+  color: var(--Accent);
+  text-decoration: none;
+  font-size: 0.9rem;
+  align-self: flex-start;
+  margin-bottom: 15px;
+}
+
+.loginSignupForm a:hover {
+  text-decoration: underline;
+}
+
+/* Submit button inside form */
+.loginSignup {
+  background: linear-gradient(to right, var(--Accent), #42a5f5);
+  color: white !important;
+  padding: 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  margin-top: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: background 0.3s ease;
+}
+
+.loginSignup:hover {
+  background: linear-gradient(to right, #2d3d96, #2196f3);
+}
+
+/* Error messages */
+.myLoginSignupForm div[style*="color: red"] {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #d32f2f;
+}
+
+/* Account switch link at bottom */
+.account {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.account a {
+  color: var(--Accent);
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.account a:hover {
+  text-decoration: underline;
+}

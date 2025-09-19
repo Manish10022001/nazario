@@ -1,0 +1,345 @@
+/* ================================
+   Root Variables
+   ================================ */
+:root {
+  --nav-bg: #3f4f51; /* Navbar background color */
+  --text-color: white; /* Text/icons color */
+}
+
+/* ================================
+   Navbar Base
+   ================================ */
+.custom-navbar {
+  background: var(--nav-bg);
+  padding: 0.8rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ================================
+   Logo
+   ================================ */
+.navbar-logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+/* ================================
+   Desktop Navlinks
+   ================================ */
+.desktop-navlinks {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+  justify-content: center; /* Center navlinks */
+  /* margin-left: 3rem;  */
+}
+
+.desktop-navlinks a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Smooth underline animation */
+.desktop-navlinks a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--text-color);
+  transition: width 0.3s ease-in-out;
+}
+
+.desktop-navlinks a:hover {
+  color: #ffffff;
+}
+
+.desktop-navlinks a:hover::after {
+  width: 100%;
+}
+
+/* ===== NEW: Active Link Styling for Desktop ===== */
+.desktop-navlinks .active-link {
+  color: #ffb347; /* Highlight color */
+}
+
+.desktop-navlinks .active-link::after {
+  width: 100%;
+  background-color: #ffb347;
+}
+
+/* ================================
+   Desktop Search + Icons
+   ================================ */
+.desktop-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.desktop-search {
+  position: relative;
+  width: 300px; /* Searchbar width */
+}
+
+.desktop-search .search-input {
+  border: 1px solid var(--text-color);
+  border-radius: 50px;
+  padding: 0.4rem 2.5rem 0.4rem 1rem;
+  width: 100%;
+  background: #fff;
+  color: #333;
+}
+
+/* Remove Bootstrap hover + focus effects */
+.desktop-search .search-input:hover {
+  border: 1px solid var(--text-color);
+  box-shadow: none !important;
+}
+
+.search-input:focus {
+  border: 2px solid #000 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Fixed search icon inside input */
+.search-icon-fixed {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--nav-bg);
+}
+
+/* Common icon styles */
+.icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  transition: color 0.3s;
+}
+
+.icon:hover {
+  color: #fff;
+}
+
+/* Reset styles for clickable icons */
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-btn:focus {
+  outline: none;
+}
+
+/* ================================
+   Mobile Icons
+   ================================ */
+.mobile-icons {
+  display: none;
+  gap: 1rem;
+}
+
+.mobile-search {
+  padding: 0.5rem;
+}
+
+.mobile-search .search-input {
+  border: 1px solid var(--text-color);
+  border-radius: 50px;
+  padding: 0.4rem 2.5rem 0.4rem 1rem;
+  width: 100%;
+}
+
+.search-inside-icon {
+  position: absolute;
+  right: 20px;
+  top: 35%;
+  color: var(--nav-bg);
+}
+
+/* ================================
+   Mobile Menu (Slide-in)
+   ================================ */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 262px;
+  height: 100vh;
+  background: var(--nav-bg);
+  color: var(--text-color);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+
+  /* Slide effect using transform */
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+
+  padding: 1rem;
+  z-index: 1100;
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+
+.menu-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.close-icon {
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* ================================
+   Mobile Account Section
+   ================================ */
+.account-box {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+.account-avatar {
+  background: #fff;
+  color: var(--nav-bg);
+  border-radius: 50%;
+  padding: 0.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+}
+
+.account-text h6 {
+  margin: 0;
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.account-text p {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  margin: 0.2rem 0;
+}
+
+.login-btn {
+  background: #fff;
+  color: var(--nav-bg);
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.login-btn:hover {
+  background: #f2f2f2;
+}
+
+/* ================================
+   Mobile Menu Links
+   ================================ */
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--text-color);
+  padding: 0.2rem;
+  border-radius: 6px;
+  transition: background 0.3s;
+}
+
+.menu-links a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== NEW: Active Link Styling for Mobile ===== */
+.menu-links .active-link {
+  background: rgba(255, 179, 71, 0.2);
+  font-weight: 600;
+  border-radius: 4px;
+  padding-left: 0.4rem; /* Optional spacing */
+}
+
+/* ================================
+   Responsive Breakpoints
+   ================================ */
+@media (max-width: 992px) {
+  .desktop-navlinks,
+  .desktop-icons {
+    display: none;
+  }
+
+  .mobile-icons {
+    display: flex;
+  }
+}
+
+/* Responsive Navbar */
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .nav-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .header-btn-login,
+  .header-btn-signup {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 12px;
+    margin: 0;
+  }
+
+  /* Optional: Reduce nav-container padding for smaller phones */
+  @media (max-width: 480px) {
+    .nav-container {
+      padding: 0.5rem 1rem;
+    }
+
+    .header-btn-login,
+    .header-btn-signup {
+      font-size: 0.9rem;
+      padding: 10px 0;
+    }
+  }
+}
