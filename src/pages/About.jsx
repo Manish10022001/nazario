@@ -1,434 +1,792 @@
-import React, { useState, useRef, useEffect } from "react";
-import "../styles/About.css";
+import React from "react";
+// import "../styles/About.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
+
 const About = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [currentAboutImageIndex, setCurrentAboutImageIndex] = useState(0);
-  const bestSellersRef = useRef(null);
-  const videoRef = useRef(null);
-  const videoContainerRef = useRef(null);
-
-  const bestSellers = [
-    {
-      name: "Round glasses",
-      image:
-        "https://sunglassescraft.com/cdn/shop/products/brovo-2020-alloy-round-glasses-frame-wo_main-0_840b6581-9871-4dec-9b0d-8f470bc29668_800x.jpg?v=1607533773",
-    },
-    {
-      name: "Square glasses",
-      image:
-        "https://ae01.alicdn.com/kf/Hc6e054c9211e4099bac6d099ddb17ed4S.jpg",
-    },
-    {
-      name: "Cat eye glasses",
-      image:
-        "https://s.alicdn.com/@sc04/kf/H7dad7d23f9e144e2bc54264b6144a505J/Anti-Blue-Ray-Stainless-Steel-Prescription-Safety-Fancy-Optical-Frames-Computer-Glasses-Women-Men-Vintage-Eyewear.jpg",
-    },
-    {
-      name: "Blue Light Filters",
-      image:
-        "https://da4e1j5r7gw87.cloudfront.net/wp-content/uploads/sites/1082/2024/03/Blue-light-eyeglasses_Blog.jpg",
-    },
-    {
-      name: "Bigging glasses",
-      image:
-        "https://highxtar.com/wp-content/uploads/2024/12/highxtar-sabrina-carpenter-versace-1-1200x675.jpg",
-    },
-  ];
-
-  const timelineEvents = [
-    {
-      year: "2022",
-      description:
-        "Nazario is founded by a small, passionate team with a vision to revolutionize the eyewear industry. The initial focus is on blending artisanal craftsmanship with modern design.",
-    },
-    {
-      year: "2023",
-      description:
-        "The first collection of frames is launched. The commitment to quality and style resonates with customers, leading to rapid growth and brand recognition.",
-    },
-    {
-      year: "2024",
-      description:
-        "Embracing sustainability, Nazario begins using recycled materials in the production of its frames, committing to a greener future.",
-    },
-    {
-      year: "2025",
-      description:
-        "The new chapter of innovation begins with the introduction of the AI Try-On feature, making perfect vision and style accessible to all.",
-    },
-  ];
-
   const teamMembers = [
     {
       name: "Riddhish Joshi",
-      role: "Founder",
-      photo:
-        "https://img.freepik.com/premium-photo/handsome-businessman-is-working-with-laptop-office_85574-4685.jpg",
-      thought: '"Our vision is to redefine style, one frame at a time."',
+      role: "Chief Executive Officer",
+      quote:
+        "Nazario is more than eyewear; it's about seeing the world with confidence and style. We're dedicated to this vision.",
+      image:
+        "https://img.freepik.com/free-photo/young-attractive-man-classic-suit-straightens-his-tie_171337-9532.jpg",
     },
     {
       name: "Raj Patil",
-      role: "CEO",
-      photo:
-        "https://i0.wp.com/www.wonderslist.com/wp-content/uploads/2021/05/Cha-Eun-woo-Most-Handsome-Korean-Actors-2021.jpg",
-      thought: '"Leading with innovation and a passion for perfect vision."',
+      role: "Head of Operations",
+      quote:
+        "Our streamlined operations ensure every pair of glasses reaches you perfectly. We believe in efficiency and excellence.",
+      image:
+        "https://www.shutterstock.com/image-photo/image-happy-brunette-man-wearing-260nw-1489874846.jpg",
     },
     {
       name: "Ruchi",
-      role: "Manager",
-      photo:
-        "https://t4.ftcdn.net/jpg/05/84/65/25/360_F_584652599_s89lyUhPSMfX5YsRlKsa1AglJT7vNioO.jpg",
-      thought:
-        '"Dedicated to building a community of confident and stylish individuals."',
+      role: "Creative Director",
+      quote:
+        "Designing for Nazario is a blend of global trends and timeless Indian elegance. Each piece tells a story of craftsmanship.",
+      image:
+        "https://www.shutterstock.com/image-photo/young-woman-formal-clothes-on-260nw-1081627103.jpg",
     },
     {
       name: "Dev Sharma",
-      role: "Tech Lead",
-      photo:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZd1b1ZEKjJxJMA8TGDyHzY-VA_oO74EVxyA&s",
-      thought: '"Creating seamless and magical experiences with technology."',
+      role: "Customer Relations Lead",
+      quote:
+        "Our customers are at the heart of everything we do. We strive to provide a service experience as exceptional as our products.",
+      image:
+        "https://static.vecteezy.com/system/resources/previews/033/129/417/non_2x/a-business-man-stands-against-white-background-with-his-arms-crossed-ai-generative-photo.jpg",
     },
   ];
 
-  const clients = [
+  const customerReviews = [
     {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Walmart_logo_%282008%29.svg/2560px-Walmart_logo_%282008%29.svg.png",
-      name: "Walmart",
+      name: "Priya A.",
+      city: "Mumbai",
+      review:
+        "I was hesitant to buy glasses online, but Nazario’s virtual try-on and quality exceeded my expectations. My new frames are perfect!",
+      image:
+        "https://img.freepik.com/premium-photo/indoors-portrait-beautiful-stylish-woman-with-trendy-glasses-curly-hairstyle-fashion-beige-knitted-vintage-sweater-sits-cafe_338491-19838.jpg",
     },
     {
-      logo: "https://upload.wikimedia.org/wikipedia/commons/b/ba/HSBC_Logo_2018.png",
-      name: "HSBC",
+      name: "Akansha R.",
+      city: "Delhi",
+      review:
+        "The service was excellent, and the shipping was so fast! I love my new specs; they feel and look premium. Highly recommend!",
+      image:
+        "https://media.istockphoto.com/id/1134003578/photo/smiling-woman-wearing-eyeglasses-outdoor.jpg?s=612x612&w=0&k=20&c=obFbEWz4lii-wrWBVVExIRAW0T_-JjQdQICgUkU567M=",
     },
     {
-      logo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT48c7V_3JkPvvf6sgQv0lcBMF5jEW7aLMByw&s",
-      name: "Alitalia",
-    },
-  ];
-
-  const aboutImages = [
-    {
-      src: "https://media.istockphoto.com/id/2160439645/photo/happy-hispanic-father-piggyback-his-son-at-park.webp?a=1&b=1&s=612x612&w=0&k=20&c=XXJlGYCGQ4IVYejsLwIgZ9HWfvC_74kBJPZRaspku9A=",
-      alt: "A happy father giving his son a piggyback ride in a park.",
-    },
-    {
-      src: "https://www.shutterstock.com/image-photo/smiling-mother-little-daughter-taking-260nw-2391948177.jpg",
-      alt: "Two people in an optical shop.",
-    },
-    {
-      src: "https://media.istockphoto.com/id/850767742/photo/family-in-optical-store.jpg?s=612x612&w=0&k=20&c=kJWKRwWpIvv7H2ENxLx0Gbti9h8HH8scUd3CYMKqp2g=",
-      alt: "A mother and son buying glasses from an optician.",
-    },
-    {
-      src: "https://media.istockphoto.com/id/1313344219/photo/middle-age-women-seller-and-customer-choosing-new-eyeglasses-in-modern-optical-store-shopping.jpg?s=612x612&w=0&k=20&c=JAVYg81r0D8hk8JINFXncxYuuzd8W71q6OtCQrrRAz8=",
-      alt: "An optician and a client looking in a mirror with new glasses.",
+      name: "Suraj G.",
+      city: "Bengaluru",
+      review:
+        "My order was handled with great care. The 30-day return policy gave me peace of mind, but I definitely won’t be returning these stylish frames!",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-5HlQnElYHZv-ec3TMNs784njup9KOe9OfA&s",
     },
   ];
 
-  useEffect(() => {
-    const video = videoRef.current;
-    const container = videoContainerRef.current;
-    const handleMouseEnter = () => video?.play();
-    const handleMouseLeave = () => {
-      if (video) {
-        video.pause();
-        video.currentTime = 0;
-      }
-    };
-    container?.addEventListener("mouseenter", handleMouseEnter);
-    container?.addEventListener("mouseleave", handleMouseLeave);
-    return () => {
-      container?.removeEventListener("mouseenter", handleMouseEnter);
-      container?.removeEventListener("mouseleave", handleMouseLeave);
-    };
-  }, []);
+  const servicePoints = [
+    {
+      icon: "https://www.freeiconspng.com/uploads/free-shipping-fast-icon-png-26.png",
+      title: "Free Shipping",
+      desc: "Across all orders, no minimum purchase required.",
+    },
+    {
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAIIlbkJw9QTGUYGmCYdsck32hbzVFv_mCLw&s",
+      title: "Top-Rated Reviews",
+      desc: "Join thousands of happy customers with 5-star reviews.",
+    },
+    {
+      icon: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnsuOGFGefSyGNkyYP_fQfulPqoelcrJU-Pw&s",
+      title: "Best Customer Service",
+      desc: "Our team is here 24/7 to assist you with a smile.",
+    },
+    {
+      icon: "🏆",
+      title: "#1 Online Eyewear Retailer",
+      desc: "Recognized for our quality, design, and service excellence.",
+    },
+    {
+      icon: "📦",
+      title: "30-Day Return Policy",
+      desc: "Shop with confidence, easy and hassle-free returns.",
+    },
+  ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentAboutImageIndex(
-        (prevIndex) => (prevIndex + 1) % aboutImages.length
-      );
-    }, 2000);
-    return () => clearInterval(interval);
-  }, [aboutImages.length]);
+  const paymentOptions = [
+    {
+      name: "PhonePe",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStCMMm1o1RmcTLaofZAWNdEEGhSccXNuvMDw&s",
+    },
+    {
+      name: "PayPal",
+      image:
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png",
+    },
+    {
+      name: "GPay",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR4ArUxtci1ip0bL0K9hs9QtwcJGy_gu9iYA&s",
+    },
+    {
+      name: "Credit Card",
+      image:
+        "https://www.shutterstock.com/image-vector/logo-credit-card-hand-260nw-655313125.jpg",
+    },
+    {
+      name: "Debit Card",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl38vvxWHWJA_s5BJaJHhMC7u8UoenIqSCSw&s",
+    },
+  ];
 
-  const [currentBestSellerIndex, setCurrentBestSellerIndex] = useState(0);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentBestSellerIndex(
-        (prevIndex) => (prevIndex + 1) % bestSellers.length
-      );
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [bestSellers.length]);
-
-  const handleAITryOn = () => setShowModal(true);
-  const handleScrollToBestSellers = (e) => {
-    e.preventDefault();
-    bestSellersRef.current.scrollIntoView({ behavior: "smooth" });
+  const handleError = (e, placeholderText) => {
+    e.target.onerror = null;
+    e.target.src = `https://placehold.co/100x100/${
+      e.target.dataset.bgcolor || "DCD7C9"
+    }/${e.target.dataset.textcolor || "203639"}?text=${placeholderText}`;
   };
 
   return (
-    <div className="container-fluid max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <Navbar />
-      <main className="d-flex flex-column gap-5">
-        {/* Hero Section */}
-        <section className="hero-section text-center p-5 rounded-3xl shadow-lg">
-          <div className="p-5 rounded-2xl text-light">
-            <h1 className="display-4 font-extrabold mb-4 lh-sm">
-              See the World in a New Light
-            </h1>
-            <p className="lead max-w-2xl mx-auto mb-4">
-              Discover our exclusive collection of stylish and innovative
-              eyewear, designed to elevate your vision and your style.
+    <>
+    <Navbar />
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap');
+
+          :root {
+            --inkwell: #203639;
+            --au-lait: #DCD7C9;
+          }
+          
+
+          .section-card {
+            background-color: var(--au-lait);
+            color: var(--inkwell);
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease, border 0.3s ease;
+            border: 4px solid var(--au-lait);
+          }
+
+          .section-card:hover {
+            transform: scale(1.01);
+            border-color: var(--inkwell);
+          }
+
+          .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-align: center;
+          }
+
+          .section-description {
+            font-size: 1.125rem;
+            font-weight: 300;
+            text-align: center;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .journey-timeline {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            gap: 3rem;
+          }
+
+          @media (min-width: 768px) {
+            .journey-timeline {
+              flex-direction: row;
+            }
+            .journey-timeline::before {
+              content: '';
+              position: absolute;
+              top: 50%;
+              left: 0;
+              right: 0;
+              height: 2px;
+              background-color: var(--inkwell);
+              z-index: 0;
+            }
+          }
+
+          .journey-point {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .journey-point-dot {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            background-color: var(--inkwell);
+            border: 4px solid var(--au-lait);
+            margin-bottom: 1rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+          }
+
+          .journey-point:hover .journey-point-dot {
+            background-color: var(--au-lait);
+            border-color: var(--inkwell);
+          }
+
+          .journey-year {
+            font-size: 1.875rem;
+            font-weight: 700;
+          }
+
+          .mission-vision-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 2rem;
+          }
+          
+          @media (min-width: 768px) {
+            .mission-vision-container {
+              flex-direction: row;
+            }
+          }
+
+          .mission-vision-card {
+            width: 100%;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+          }
+          
+          @media (min-width: 768px) {
+            .mission-vision-card {
+              width: 50%;
+            }
+          }
+
+          .mission-vision-card:hover {
+            transform: scale(1.05);
+          }
+
+          .grid-container {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 1.5rem;
+          }
+          
+          @media (min-width: 640px) {
+            .grid-container {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .grid-container {
+              grid-template-columns: repeat(5, minmax(0, 1fr));
+            }
+          }
+          
+          .grid-card {
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+          }
+
+          .grid-card:hover {
+            transform: scale(1.05);
+          }
+
+          .icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 0.5rem;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+          }
+
+          .icon:hover {
+            filter: grayscale(0%);
+          }
+
+          .large-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .why-us-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+          }
+
+          .why-us-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            max-width: 48rem;
+            gap: 2rem;
+          }
+
+          @media (min-width: 768px) {
+            .why-us-content {
+              flex-direction: row;
+            }
+          }
+
+          .path-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+          }
+
+          .path-items {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          }
+
+          .path-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            transition: transform 0.3s ease;
+            text-align: center;
+          }
+
+          .path-item:hover {
+            transform: scale(1.05);
+          }
+
+          .path-image {
+            width: 6rem;
+            height: 6rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .customer-reviews-container {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2rem;
+          }
+          
+          @media (min-width: 768px) {
+            .customer-reviews-container {
+              grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+          }
+          
+          .review-card {
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease;
+          }
+
+          .review-card:hover {
+            transform: scale(1.05);
+          }
+
+          .review-image {
+            width: 6rem;
+            height: 6rem;
+            border-radius: 9999px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--au-lait);
+          }
+
+          .payment-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+          }
+
+          .payment-card {
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+          }
+
+          .payment-card:hover {
+            transform: scale(1.05);
+          }
+
+          .payment-image {
+            width: 6rem;
+            height: 3rem;
+            object-fit: contain;
+          }
+
+          .team-container {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2rem;
+          }
+
+          @media (min-width: 768px) {
+            .team-container {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+
+          @media (min-width: 1024px) {
+            .team-container {
+              grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+          }
+
+          .team-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease;
+          }
+
+          .team-card:hover {
+            transform: scale(1.05);
+          }
+
+          .team-image {
+            width: 9rem;
+            height: 9rem;
+            border-radius: 9999px;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 2px solid var(--au-lait);
+          }
+
+          .w-12 {
+            width: 3rem;
+          }
+          .h-12 {
+            height: 3rem;
+          }
+          .animate-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          }
+          @keyframes pulse {
+            50% {
+              opacity: .5;
+            }
+          }
+          .transform {
+            /* This is a utility class for enabling transforms in frameworks like Tailwind */
+          }
+          .scale-x-150 {
+            transform: scaleX(1.5);
+          }
+          .animate-bounce {
+            animation: bounce 1s infinite;
+          }
+          @keyframes bounce {
+            0%, 100% {
+              transform: translateY(-25%);
+              animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+            }
+            50% {
+              transform: translateY(0);
+              animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+            }
+          }
+        `}
+      </style>
+      <div className="main-container">
+        <main className="container mt-4">
+          <section className="section-card">
+            <h2 className="section-title">About Nazario</h2>
+            <p className="section-description">
+              Welcome to Nazario, a new vision in eyewear. We believe that
+              glasses are not just a tool for sight, but an expression of your
+              unique personality. Our mission is to provide handcrafted,
+              stylish, and high-quality eyewear that empowers you to see and be
+              seen in the most authentic way. Every pair is a testament to our
+              commitment to craftsmanship and your perfect fit. We are driven by
+              a passion for design and a relentless pursuit of customer
+              satisfaction, ensuring a seamless and enjoyable shopping
+              experience from start to finish.
             </p>
-            <a
-              href="#best-sellers"
-              onClick={handleScrollToBestSellers}
-              className="btn bg-light text-dark py-3 px-5 rounded-pill fw-bold text-decoration-none transition-all duration-300 hover:scale-105 hover:opacity-90 shadow-lg"
-            >
-              Explore Collection
-            </a>
-          </div>
-        </section>
+          </section>
 
-        {/* Best Sellers Section */}
-        <section
-          id="best-sellers"
-          ref={bestSellersRef}
-          className="bg-white rounded-3xl shadow-lg p-5 border-2 border-[#203639]"
-        >
-          <h2 className="text-3xl font-bold text-center mb-5">
-            Our Best Sellers
-          </h2>
-
-          <div className="text-center mb-5 about-carousel-container">
-            {bestSellers.map((product, index) => (
-              <img
-                key={index}
-                src={product.image}
-                alt={product.name}
-                className={`about-carousel-img ${
-                  currentBestSellerIndex === index ? "active" : ""
-                }`}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* Timeline Section */}
-        <section className="bg-inkwell text-light rounded-3xl shadow-lg p-5">
-          <h2 className="text-3xl font-bold text-center mb-5">
-            Our Luminous Journey
-          </h2>
-          <div className="timeline-container d-flex justify-content-between align-items-start gap-4 mx-auto">
-            {timelineEvents.map((event, index) => (
-              <div key={index} className="timeline-item">
-                <div className="timeline-year">{event.year}</div>
-                <div className="timeline-description">{event.description}</div>
+          <section className="section-card">
+            <h2 className="section-title">Our Journey</h2>
+            <div className="journey-timeline">
+              <div className="journey-point">
+                <div className="journey-point-dot"></div>
+                <h3 className="journey-year">2023</h3>
+                <p className="mt-2 text-inkwell text-center max-w-xs font-light">
+                  Founded in Mumbai with a small team and a big dream to
+                  redefine online eyewear retail. We launched our first
+                  collection of handmade frames.
+                </p>
               </div>
-            ))}
-          </div>
-        </section>
 
-        {/* About Section */}
-        <section className="bg-white rounded-3xl shadow-lg p-5 border-2 border-[#203639]">
-          <h2 className="text-3xl font-bold text-center mb-5">About Nazario</h2>
-          <div className="text-center mb-5 about-carousel-container">
-            {aboutImages.map((image, index) => (
-              <img
-                key={index}
-                src={image.src}
-                className={`about-carousel-img ${
-                  currentAboutImageIndex === index ? "active" : ""
-                }`}
-                alt={image.alt}
-              />
-            ))}
-          </div>
-          <p className="lead text-center max-w-4xl mx-auto">
-            Nazario is more than just an eyewear brand; it's a statement. We
-            believe that glasses are a powerful form of self-expression. Our
-            curated collections are designed for the modern individual who
-            values elegance, quality, and technology. We are dedicated to
-            providing an unparalleled shopping experience, from our meticulously
-            crafted frames to our personalized, high-tech fitting solutions.
-          </p>
-        </section>
+              <div className="journey-point">
+                <div className="journey-point-dot"></div>
+                <h3 className="journey-year">2024</h3>
+                <p className="mt-2 text-inkwell text-center max-w-xs font-light">
+                  Expanded our product line to include sunglasses and
+                  prescription lenses. Our virtual try-on feature revolutionized
+                  the customer shopping experience.
+                </p>
+              </div>
 
-        {/* AI Try On Section */}
-        <section className="bg-inkwell text-light rounded-3xl shadow-lg p-5">
-          <div className="d-flex flex-column flex-md-row align-items-center gap-4">
-            <div className="w-100 w-md-50">
-              <div className="video-container" ref={videoContainerRef}>
-                <video
-                  ref={videoRef}
-                  src="https://assets.mixkit.co/videos/preview/mixkit-young-man-wearing-glasses-8302-large.mp4"
-                  loop
-                  muted
-                  playsInline
-                  preload="none"
-                >
-                  Your browser does not support the video tag.
-                </video>
-                <div className="image-overlay"></div>
+              <div className="journey-point">
+                <div className="journey-point-dot"></div>
+                <h3 className="journey-year">2025</h3>
+                <p className="mt-2 text-inkwell text-center max-w-xs font-light">
+                  Became a leading online eyewear retailer in India, with a
+                  growing community of loyal customers and a commitment to
+                  sustainability.
+                </p>
               </div>
             </div>
-            <div className="w-100 w-md-50 text-center text-md-left">
-              <h2 className="display-5 font-extrabold mb-4 lh-sm">
-                Discover Your Perfect Fit
-              </h2>
-              <p className="lead mb-4">
-                Experience the future of online shopping with our latest AI
-                Try-On feature. See how our glasses look on your face from the
-                comfort of your home. It’s the closest thing to a real-life
-                fitting, designed for your convenience.
+          </section>
+
+          <section className="section-card">
+            <h2 className="section-title">Mission & Vision</h2>
+            <div className="mission-vision-container">
+              <div className="mission-vision-card">
+                <h3 className="text-2xl font-bold mb-2 text-center text-inkwell">
+                  Our Mission
+                </h3>
+                <p className="text-inkwell text-center font-light">
+                  To provide accessible, affordable, and high-quality eyewear
+                  that combines innovative design with exceptional comfort, all
+                  while maintaining a seamless online shopping experience.
+                </p>
+              </div>
+              <div className="mission-vision-card">
+                <h3 className="text-2xl font-bold mb-2 text-center text-inkwell">
+                  Our Vision
+                </h3>
+                <p className="text-inkwell text-center font-light">
+                  To be the number one online eyewear destination, empowering
+                  individuals to express their unique identity through
+                  fashionable and functional eyewear.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section className="section-card">
+            <h2 className="section-title">Customer Services</h2>
+            <div className="grid-container">
+              {servicePoints.map((point, index) => (
+                <div key={index} className="grid-card">
+                  {point.icon.startsWith("http") ? (
+                    <img
+                      src={point.icon}
+                      alt={point.title}
+                      className="icon"
+                      onError={(e) =>
+                        handleError(e, point.title.replace(/ /g, "+"))
+                      }
+                    />
+                  ) : (
+                    <div className="large-icon">{point.icon}</div>
+                  )}
+                  <h3 className="text-xl font-bold text-inkwell">
+                    {point.title}
+                  </h3>
+                  <p className="text-sm text-inkwell font-light">
+                    {point.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="section-card">
+            <h2 className="section-title">Why you should choose us?</h2>
+            <div className="why-us-section">
+              <p className="text-inkwell text-center max-w-2xl font-light">
+                We believe in providing you with the best products without the
+                hefty price tag. By cutting out the middlemen, we connect you
+                directly to the source, ensuring you get premium quality at an
+                unbeatable value.
               </p>
-              <button
-                onClick={handleAITryOn}
-                className="btn bg-light text-dark py-3 px-5 rounded-pill fw-bold border-0 cursor-pointer transition-all duration-300 hover:scale-105 hover:opacity-90 shadow-lg"
-              >
-                Try on Now!
-              </button>
-            </div>
-          </div>
-        </section>
-
-        {/* Vision & Mission Section */}
-        <section className="bg-white rounded-3xl shadow-lg p-5 border-2 border-[#203639]">
-          <h2 className="text-3xl font-bold text-center mb-5">
-            Our Vision & Mission
-          </h2>
-          <div className="row g-4 justify-content-center">
-            <div className="col-12 col-md-6 d-flex align-items-stretch">
-              <div className="mv-card">
-                <svg
-                  className="mv-icon"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.646 7.354a.5.5 0 01.708.708L7.5 10.5l4.146-4.146a.5.5 0 01.708.708L8.207 11.207a.5.5 0 01-.708 0L4.646 8.061a.5.5 0 010-.707z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <h3 className="h4 fw-bold mb-2">Our Vision</h3>
-                <p className="lead">
-                  To become the world's leading destination for premium eyewear,
-                  celebrated for our commitment to style, sustainability, and
-                  unparalleled customer experience.
-                </p>
+              <div className="why-us-content">
+                <div className="path-card">
+                  <h3 className="text-xl font-bold text-inkwell">
+                    The Old Way
+                  </h3>
+                  <div className="path-items">
+                    <div className="path-item">
+                      <img
+                        src="https://placehold.co/100x100/DCD7C9/203639?text=Factory"
+                        alt="Factory"
+                        className="path-image"
+                      />
+                      <p className="mt-2 text-sm font-semibold text-inkwell">
+                        Our Factory
+                      </p>
+                    </div>
+                    <svg
+                      className="w-12 h-12 text-inkwell animate-pulse"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                    </svg>
+                    <div className="path-item">
+                      <img
+                        src="https://placehold.co/100x100/DCD7C9/203639?text=Retailer"
+                        alt="Retailer"
+                        className="path-image"
+                      />
+                      <p className="mt-2 text-sm font-semibold text-inkwell">
+                        The Retailer
+                      </p>
+                    </div>
+                    <svg
+                      className="w-12 h-12 text-inkwell animate-pulse"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                    </svg>
+                    <div className="path-item">
+                      <img
+                        src="https://placehold.co/100x100/DCD7C9/203639?text=Customer"
+                        alt="Customer"
+                        className="path-image"
+                      />
+                      <p className="mt-2 text-sm font-semibold text-inkwell">
+                        You, Our Customer
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div className="path-card">
+                  <h3 className="text-xl font-bold text-inkwell">
+                    Nazario's Way
+                  </h3>
+                  <div className="path-items">
+                    <div className="path-item">
+                      <img
+                        src="https://placehold.co/100x100/DCD7C9/203639?text=Factory"
+                        alt="Factory"
+                        className="path-image"
+                      />
+                      <p className="mt-2 text-sm font-semibold text-inkwell">
+                        Our Factory
+                      </p>
+                    </div>
+                    <svg
+                      className="w-12 h-12 text-inkwell transform scale-x-150 animate-bounce"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
+                    </svg>
+                    <div className="path-item">
+                      <img
+                        src="https://placehold.co/100x100/DCD7C9/203639?text=Customer"
+                        alt="Customer"
+                        className="path-image"
+                      />
+                      <p className="mt-2 text-sm font-semibold text-inkwell">
+                        You, Our Customer
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="col-12 col-md-6 d-flex align-items-stretch">
-              <div className="mv-card">
-                <svg
-                  className="mv-icon"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                  <path
-                    fillRule="evenodd"
-                    d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                <h3 className="h4 fw-bold mb-2">Our Mission</h3>
-                <p className="lead">
-                  To provide exceptional eyewear that combines innovative design
-                  with superior quality, helping our customers express their
-                  individuality and see the world in a new light.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Meet the Team Section */}
-        <section className="bg-inkwell text-light rounded-3xl shadow-lg p-5">
-          <h2 className="text-3xl fw-bold text-center mb-5">Meet the Team</h2>
-          <div className="row g-4">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="col-12 col-sm-6 col-lg-3">
-                <div className="bg-light text-dark rounded-3xl p-4 text-center shadow-md transition-all duration-300 hover:scale-105 hover:shadow-xl">
+          <section className="section-card">
+            <h2 className="section-title">Customer Reviews</h2>
+            <div className="customer-reviews-container">
+              {customerReviews.map((review, index) => (
+                <div key={index} className="review-card">
                   <img
-                    src={member.photo}
-                    alt={member.name}
-                    className="w-100 h-100 rounded-circle mx-auto mb-4 object-cover border-4 border-dark"
-                    loading="lazy"
-                    style={{ width: "128px", height: "128px" }}
+                    src={review.image}
+                    alt={`${review.name}'s profile`}
+                    className="review-image"
+                    data-bgcolor="DCD7C9"
+                    data-textcolor="203639"
+                    onError={(e) => handleError(e, "User+Image")}
                   />
-                  <h3 className="h5 fw-bold">{member.name}</h3>
-                  <p className="small fw-semibold mb-4">{member.role}</p>
-                  <p className="small fst-italic">{member.thought}</p>
+                  <h3 className="text-lg font-bold text-inkwell">
+                    {review.name} -{" "}
+                    <span className="font-light">{review.city}</span>
+                  </h3>
+                  <p className="mt-2 text-sm text-inkwell font-light">
+                    "{review.review}"
+                  </p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Our Valued Clients */}
-        <section className="bg-white rounded-3xl shadow-lg p-5 border-2 border-[#203639]">
-          <h2 className="text-3xl fw-bold text-center mb-5">
-            Our Valued Clients
-          </h2>
-          <div className="row g-4">
-            {clients.map((client, index) => (
-              <div
-                key={index}
-                className="col-6 col-sm-6 col-lg-3 d-flex justify-content-center align-items-center p-4"
-              >
-                <img
-                  src={client.logo}
-                  alt={client.name}
-                  className="w-100 h-20 max-h-20 object-contain grayscale transition-all duration-300 hover:grayscale-0"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      {/* AI Try On Modal */}
-      {showModal && (
-        <div className="modal d-block" tabIndex="-1">
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content rounded-3xl p-4">
-              <div className="modal-header border-0 pb-0">
-                <h5 className="modal-title fw-bold">AI Try On Feature</h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  onClick={() => setShowModal(false)}
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body text-center">
-                <p>
-                  This is a placeholder for the AI Try On functionality. You can
-                  integrate a webcam feed here to allow users to virtually try
-                  on glasses.
-                </p>
-                <div className="w-100 h-64 bg-secondary-subtle rounded-3xl d-flex justify-content-center align-items-center">
-                  <span className="text-secondary">
-                    Webcam Feed Placeholder
-                  </span>
-                </div>
-              </div>
+              ))}
             </div>
-          </div>
-        </div>
-      )}
+          </section>
 
-      <Footer />
-    </div>
+          <section className="section-card">
+            <h2 className="section-title">Payment Options Available</h2>
+            <div className="payment-container">
+              {paymentOptions.map((option, index) => (
+                <div key={index} className="payment-card">
+                  {option.image ? (
+                    <img
+                      src={option.image}
+                      alt={option.name}
+                      className="payment-image"
+                      onError={(e) =>
+                        handleError(e, option.name.replace(/ /g, "+"))
+                      }
+                    />
+                  ) : (
+                    <p className="text-lg font-semibold text-inkwell">
+                      {option.name}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="section-card">
+            <h2 className="section-title">Meet the Team</h2>
+            <div className="team-container">
+              {teamMembers.map((member, index) => (
+                <div key={index} className="team-card">
+                  <img
+                    src={member.image}
+                    alt={`${member.name}'s profile`}
+                    className="team-image"
+                    data-bgcolor="DCD7C9"
+                    data-textcolor="203639"
+                    onError={(e) =>
+                      handleError(e, member.name.replace(/ /, "+"))
+                    }
+                  />
+                  <h3 className="text-xl font-bold text-inkwell">
+                    {member.name}
+                  </h3>
+                  <p className="text-sm font-semibold text-inkwell mb-2">
+                    {member.role}
+                  </p>
+                  <p className="text-sm text-inkwell font-light">
+                    "{member.quote}"
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </main>
+      </div>
+    </>
   );
 };
 
