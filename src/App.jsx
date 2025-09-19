@@ -9,6 +9,7 @@ import PrivacyPolicy from "./components/PrivacyPolicy";
 // import Men from "./pages/Men";
 // import Women from "./pages/Women";
 import About from "./pages/About";
+import Home from "./pages/Home";
 import Contact from "./pages/Contact";
 // import FAQ from "./pages/FAQ";
 
@@ -16,7 +17,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<ShopPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/shopPage" element={<ShopPage />} />
         <Route path="/product/:id" element={<ProductDetailsPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/terms" element={<TermsOfService />} />
