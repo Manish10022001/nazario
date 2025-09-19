@@ -786,6 +786,7 @@ const About = () => {
           </section>
         </main>
       </div>
+      <Footer />
     </>
   );
 };
