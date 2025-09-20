@@ -12,7 +12,6 @@ const Home = () => {
   const bannerImages = [
     "https://s.alicdn.com/@sc04/kf/H45960f0a064d471ca4a2f82014390446D/147-Shiny-Anti-Blue-Light-Glasses-Computer-Metal-Girls-Designer-Optical-Wholesale-Eyewear-Frame-Spectacle-Eyeglasses-Frame.jpeg",
     "https://c1.wallpaperflare.com/preview/87/543/579/eyeglasses-eyewear-table-dark.jpg",
-    "https://sc04.alicdn.com/kf/Hd358a333fe4642de9ea6bd45ec157315j.jpg",
     "https://res.ygstatic.com/lifestyle/e16725/2.1800.1732672682-366.jpg",
     "https://res.ygstatic.com/lifestyle/e15542/1.1800.1690283522-db7.jpg",
     "https://res.ygstatic.com/lifestyle/e14014/2.1800.1646981045-6c4.jpg",
@@ -128,35 +127,34 @@ const Home = () => {
   return (
     <div>
       <Navbar />
-      <div className="homepage-container">
-        {/* 1. Banner Section */}
-        <section className="banner-section">
-          {bannerImages.map((image, index) => (
-            <div
+      {/* 1. Banner Section */}
+      <section className="banner-section">
+        {bannerImages.map((image, index) => (
+          <div
+            key={index}
+            className={`banner-slide ${
+              currentBannerIndex === index ? "active" : ""
+            }`}
+            style={{ backgroundImage: `url(${image})` }}
+          ></div>
+        ))}
+        <div className="banner-controls">
+          <button onClick={handlePrevBanner}>&#10094;</button>
+          <button onClick={handleNextBanner}>&#10095;</button>
+        </div>
+        <div className="banner-indicators">
+          {bannerImages.map((_, index) => (
+            <span
               key={index}
-              className={`banner-slide ${
+              className={`banner-indicator-dot ${
                 currentBannerIndex === index ? "active" : ""
               }`}
-              style={{ backgroundImage: `url(${image})` }}
-            ></div>
+              onClick={() => setCurrentBannerIndex(index)}
+            ></span>
           ))}
-          <div className="banner-controls">
-            <button onClick={handlePrevBanner}>&#10094;</button>
-            <button onClick={handleNextBanner}>&#10095;</button>
-          </div>
-          <div className="banner-indicators">
-            {bannerImages.map((_, index) => (
-              <span
-                key={index}
-                className={`banner-indicator-dot ${
-                  currentBannerIndex === index ? "active" : ""
-                }`}
-                onClick={() => setCurrentBannerIndex(index)}
-              ></span>
-            ))}
-          </div>
-        </section>
-
+        </div>
+      </section>
+      <div className="homepage-container">
         {/* 2. Shop by Category */}
         <section className="container my-5 text-center">
           <div className="title-container">
