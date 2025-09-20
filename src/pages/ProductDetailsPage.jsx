@@ -126,6 +126,8 @@ const ProductDetailsPage = () => {
   const [reviewFilter, setReviewFilter] = useState("all");
   const [sortBy, setSortBy] = useState("newest");
   const [submitMessage, setSubmitMessage] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const REVIEWS_PER_PAGE = 5;
 
   const sizes = ["Small", "Medium", "Large"];
 
@@ -166,6 +168,50 @@ const ProductDetailsPage = () => {
   };
 
   const { average: avgRating, distribution } = calculateRatingStats();
+
+  // Filter and sort reviews
+  const getFilteredReviews = () => {
+    let filtered = [...reviews];
+    if (reviewFilter !== "all") {
+      filtered = filtered.filter((r) => r.rating === parseInt(reviewFilter));
+    }
+    switch (sortBy) {
+      case "newest":
+        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+        break;
+      case "oldest":
+        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+        break;
+      case "highest":
+        filtered.sort((a, b) => b.rating - a.rating);
+        break;
+      case "lowest":
+        filtered.sort((a, b) => a.rating - b.rating);
+        break;
+      case "helpful":
+        filtered.sort((a, b) => b.helpful - a.helpful);
+        break;
+      default:
+        break;
+    }
+    return filtered;
+  };
+
+  // Pagination logic
+  const filteredReviews = getFilteredReviews();
+  const totalPages = Math.ceil(filteredReviews.length / REVIEWS_PER_PAGE);
+  // Show only one page at a time, no 'showAll' mode
+  const paginatedReviews = filteredReviews.slice(
+    (currentPage - 1) * REVIEWS_PER_PAGE,
+    currentPage * REVIEWS_PER_PAGE
+  );
+
+  // Show More button logic: advances to next page
+  const handleShowMore = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
 
   // Handle review submission
   const handleReviewSubmit = (e) => {
@@ -224,37 +270,6 @@ const ProductDetailsPage = () => {
     setSubmitMessage("Thank you for rating this product!");
 
     setTimeout(() => setSubmitMessage(""), 5000);
-  };
-
-  // Filter and sort reviews
-  const getFilteredReviews = () => {
-    let filtered = [...reviews];
-
-    if (reviewFilter !== "all") {
-      filtered = filtered.filter((r) => r.rating === parseInt(reviewFilter));
-    }
-
-    switch (sortBy) {
-      case "newest":
-        filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
-        break;
-      case "oldest":
-        filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
-        break;
-      case "highest":
-        filtered.sort((a, b) => b.rating - a.rating);
-        break;
-      case "lowest":
-        filtered.sort((a, b) => a.rating - b.rating);
-        break;
-      case "helpful":
-        filtered.sort((a, b) => b.helpful - a.helpful);
-        break;
-      default:
-        break;
-    }
-
-    return filtered;
   };
 
   // Scroll functionality
@@ -376,12 +391,6 @@ const ProductDetailsPage = () => {
                   <ArrowLeft size={16} className="me-1" />
                   Back to Shop
                 </button>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="/">Home</Link>
-              </li>
-              <li className="breadcrumb-item">
-                <Link to="/eyewear">Eyewear</Link>
               </li>
               <li className="breadcrumb-item active" aria-current="page">
                 {product.name}
@@ -611,6 +620,16 @@ const ProductDetailsPage = () => {
           </div>
         </div>
 
+        {/* Recommendations */}
+        <Recommendation
+          recommendations={recommendations}
+          scrollContainerRef={scrollContainerRef}
+          scrollLeft={scrollLeft}
+          scrollRight={scrollRight}
+          showLeftArrow={showLeftArrow}
+          showRightArrow={showRightArrow}
+        />
+
         {/* Reviews Section */}
         <div className="row g-4 mt-5">
           <div className="col-12">
@@ -800,7 +819,7 @@ const ProductDetailsPage = () => {
 
               {/* Reviews List */}
               <div className="reviews-list">
-                {getFilteredReviews().map((review) => (
+                {paginatedReviews.map((review) => (
                   <div key={review.id} className="border-bottom pb-4 mb-4">
                     <div className="d-flex align-items-start">
                       <div
@@ -845,7 +864,75 @@ const ProductDetailsPage = () => {
                   </div>
                 ))}
 
-                {getFilteredReviews().length === 0 && (
+                {/* Show More button: advances to next page */}
+                {currentPage < totalPages && (
+                  <div className="text-center mb-3">
+                    <button
+                      className="btn btn-outline-primary"
+                      onClick={handleShowMore}
+                    >
+                      Show More Reviews
+                    </button>
+                  </div>
+                )}
+
+                {/* Pagination controls with Prev/Next */}
+                {filteredReviews.length > 0 && totalPages > 1 && (
+                  <nav className="d-flex justify-content-center mt-3">
+                    <ul className="pagination">
+                      <li
+                        className={`page-item${
+                          currentPage === 1 ? " disabled" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() =>
+                            currentPage > 1 && setCurrentPage(currentPage - 1)
+                          }
+                          disabled={currentPage === 1}
+                        >
+                          Prev
+                        </button>
+                      </li>
+                      {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                        (page) => (
+                          <li
+                            key={page}
+                            className={`page-item ${
+                              currentPage === page ? "active" : ""
+                            }`}
+                          >
+                            <button
+                              className="page-link"
+                              onClick={() => setCurrentPage(page)}
+                            >
+                              {page}
+                            </button>
+                          </li>
+                        )
+                      )}
+                      <li
+                        className={`page-item${
+                          currentPage === totalPages ? " disabled" : ""
+                        }`}
+                      >
+                        <button
+                          className="page-link"
+                          onClick={() =>
+                            currentPage < totalPages &&
+                            setCurrentPage(currentPage + 1)
+                          }
+                          disabled={currentPage === totalPages}
+                        >
+                          Next
+                        </button>
+                      </li>
+                    </ul>
+                  </nav>
+                )}
+
+                {filteredReviews.length === 0 && (
                   <div className="text-center py-4">
                     <MessageSquare size={48} className="text-muted mb-3" />
                     <p className="text-muted">
@@ -857,16 +944,6 @@ const ProductDetailsPage = () => {
             </div>
           </div>
         </div>
-
-        {/* Recommendations */}
-        <Recommendation
-          recommendations={recommendations}
-          scrollContainerRef={scrollContainerRef}
-          scrollLeft={scrollLeft}
-          scrollRight={scrollRight}
-          showLeftArrow={showLeftArrow}
-          showRightArrow={showRightArrow}
-        />
       </div>
 
       <Footer />
