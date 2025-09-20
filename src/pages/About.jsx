@@ -3,7 +3,6 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-
 const About = () => {
   const teamMembers = [
     {
@@ -40,33 +39,6 @@ const About = () => {
     },
   ];
 
-  const customerReviews = [
-    {
-      name: "Priya A.",
-      city: "Mumbai",
-      review:
-        "I was hesitant to buy glasses online, but Nazario’s virtual try-on and quality exceeded my expectations. My new frames are perfect!",
-      image:
-        "https://img.freepik.com/premium-photo/indoors-portrait-beautiful-stylish-woman-with-trendy-glasses-curly-hairstyle-fashion-beige-knitted-vintage-sweater-sits-cafe_338491-19838.jpg",
-    },
-    {
-      name: "Akansha R.",
-      city: "Delhi",
-      review:
-        "The service was excellent, and the shipping was so fast! I love my new specs; they feel and look premium. Highly recommend!",
-      image:
-        "https://media.istockphoto.com/id/1134003578/photo/smiling-woman-wearing-eyeglasses-outdoor.jpg?s=612x612&w=0&k=20&c=obFbEWz4lii-wrWBVVExIRAW0T_-JjQdQICgUkU567M=",
-    },
-    {
-      name: "Suraj G.",
-      city: "Bengaluru",
-      review:
-        "My order was handled with great care. The 30-day return policy gave me peace of mind, but I definitely won’t be returning these stylish frames!",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-5HlQnElYHZv-ec3TMNs784njup9KOe9OfA&s",
-    },
-  ];
-
   const servicePoints = [
     {
       icon: "https://www.freeiconspng.com/uploads/free-shipping-fast-icon-png-26.png",
@@ -95,34 +67,6 @@ const About = () => {
     },
   ];
 
-  const paymentOptions = [
-    {
-      name: "PhonePe",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStCMMm1o1RmcTLaofZAWNdEEGhSccXNuvMDw&s",
-    },
-    {
-      name: "PayPal",
-      image:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/PayPal.svg/1280px-PayPal.svg.png",
-    },
-    {
-      name: "GPay",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR4ArUxtci1ip0bL0K9hs9QtwcJGy_gu9iYA&s",
-    },
-    {
-      name: "Credit Card",
-      image:
-        "https://www.shutterstock.com/image-vector/logo-credit-card-hand-260nw-655313125.jpg",
-    },
-    {
-      name: "Debit Card",
-      image:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTl38vvxWHWJA_s5BJaJHhMC7u8UoenIqSCSw&s",
-    },
-  ];
-
   const handleError = (e, placeholderText) => {
     e.target.onerror = null;
     e.target.src = `https://placehold.co/100x100/${
@@ -132,7 +76,7 @@ const About = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <style>
         {`
           @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap');
@@ -141,7 +85,29 @@ const About = () => {
             --inkwell: #203639;
             --au-lait: #DCD7C9;
           }
-          
+
+          .navbar {
+            height: 50px;
+            padding: 0.3rem 1rem;
+          }
+
+          .navbar .icon {
+            font-size: 1rem;
+            height: 1rem;
+            width: 1rem;
+          }
+
+          .desktop-search {
+            width: 250px;
+          }
+
+          .navbar-nav {
+            margin-left: -1rem;
+          }
+
+          .desktop-search .search-input {
+            padding: 0.2rem 2.5rem 0.2rem 1rem;
+          }
 
           .section-card {
             background-color: var(--au-lait);
@@ -151,11 +117,6 @@ const About = () => {
             margin-bottom: 3rem;
             transition: transform 0.3s ease, border 0.3s ease;
             border: 4px solid var(--au-lait);
-          }
-
-          .section-card:hover {
-            transform: scale(1.01);
-            border-color: var(--inkwell);
           }
 
           .section-title {
@@ -187,16 +148,6 @@ const About = () => {
           @media (min-width: 768px) {
             .journey-timeline {
               flex-direction: row;
-            }
-            .journey-timeline::before {
-              content: '';
-              position: absolute;
-              top: 50%;
-              left: 0;
-              right: 0;
-              height: 2px;
-              background-color: var(--inkwell);
-              z-index: 0;
             }
           }
 
@@ -305,124 +256,6 @@ const About = () => {
           .large-icon {
             font-size: 3.5rem;
             margin-bottom: 0.5rem;
-          }
-
-          .why-us-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
-          }
-
-          .why-us-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            max-width: 48rem;
-            gap: 2rem;
-          }
-
-          @media (min-width: 768px) {
-            .why-us-content {
-              flex-direction: row;
-            }
-          }
-
-          .path-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-          }
-
-          .path-items {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-          }
-
-          .path-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            border-radius: 0.75rem;
-            transition: transform 0.3s ease;
-            text-align: center;
-          }
-
-          .path-item:hover {
-            transform: scale(1.05);
-          }
-
-          .path-image {
-            width: 6rem;
-            height: 6rem;
-            margin-bottom: 0.5rem;
-          }
-
-          .customer-reviews-container {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 2rem;
-          }
-          
-          @media (min-width: 768px) {
-            .customer-reviews-container {
-              grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-          }
-          
-          .review-card {
-            padding: 1.5rem;
-            border-radius: 0.5rem;
-            background-color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: transform 0.3s ease;
-          }
-
-          .review-card:hover {
-            transform: scale(1.05);
-          }
-
-          .review-image {
-            width: 6rem;
-            height: 6rem;
-            border-radius: 9999px;
-            object-fit: cover;
-            margin-bottom: 1rem;
-            border: 2px solid var(--au-lait);
-          }
-
-          .payment-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 1rem;
-          }
-
-          .payment-card {
-            padding: 1rem;
-            background-color: white;
-            border-radius: 0.5rem;
-            transition: transform 0.3s ease;
-          }
-
-          .payment-card:hover {
-            transform: scale(1.05);
-          }
-
-          .payment-image {
-            width: 6rem;
-            height: 3rem;
-            object-fit: contain;
           }
 
           .team-container {
@@ -603,154 +436,6 @@ const About = () => {
                   <p className="text-sm text-inkwell font-light">
                     {point.desc}
                   </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="section-card">
-            <h2 className="section-title">Why you should choose us?</h2>
-            <div className="why-us-section">
-              <p className="text-inkwell text-center max-w-2xl font-light">
-                We believe in providing you with the best products without the
-                hefty price tag. By cutting out the middlemen, we connect you
-                directly to the source, ensuring you get premium quality at an
-                unbeatable value.
-              </p>
-              <div className="why-us-content">
-                <div className="path-card">
-                  <h3 className="text-xl font-bold text-inkwell">
-                    The Old Way
-                  </h3>
-                  <div className="path-items">
-                    <div className="path-item">
-                      <img
-                        src="https://placehold.co/100x100/DCD7C9/203639?text=Factory"
-                        alt="Factory"
-                        className="path-image"
-                      />
-                      <p className="mt-2 text-sm font-semibold text-inkwell">
-                        Our Factory
-                      </p>
-                    </div>
-                    <svg
-                      className="w-12 h-12 text-inkwell animate-pulse"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-                    </svg>
-                    <div className="path-item">
-                      <img
-                        src="https://placehold.co/100x100/DCD7C9/203639?text=Retailer"
-                        alt="Retailer"
-                        className="path-image"
-                      />
-                      <p className="mt-2 text-sm font-semibold text-inkwell">
-                        The Retailer
-                      </p>
-                    </div>
-                    <svg
-                      className="w-12 h-12 text-inkwell animate-pulse"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-                    </svg>
-                    <div className="path-item">
-                      <img
-                        src="https://placehold.co/100x100/DCD7C9/203639?text=Customer"
-                        alt="Customer"
-                        className="path-image"
-                      />
-                      <p className="mt-2 text-sm font-semibold text-inkwell">
-                        You, Our Customer
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="path-card">
-                  <h3 className="text-xl font-bold text-inkwell">
-                    Nazario's Way
-                  </h3>
-                  <div className="path-items">
-                    <div className="path-item">
-                      <img
-                        src="https://placehold.co/100x100/DCD7C9/203639?text=Factory"
-                        alt="Factory"
-                        className="path-image"
-                      />
-                      <p className="mt-2 text-sm font-semibold text-inkwell">
-                        Our Factory
-                      </p>
-                    </div>
-                    <svg
-                      className="w-12 h-12 text-inkwell transform scale-x-150 animate-bounce"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z" />
-                    </svg>
-                    <div className="path-item">
-                      <img
-                        src="https://placehold.co/100x100/DCD7C9/203639?text=Customer"
-                        alt="Customer"
-                        className="path-image"
-                      />
-                      <p className="mt-2 text-sm font-semibold text-inkwell">
-                        You, Our Customer
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section className="section-card">
-            <h2 className="section-title">Customer Reviews</h2>
-            <div className="customer-reviews-container">
-              {customerReviews.map((review, index) => (
-                <div key={index} className="review-card">
-                  <img
-                    src={review.image}
-                    alt={`${review.name}'s profile`}
-                    className="review-image"
-                    data-bgcolor="DCD7C9"
-                    data-textcolor="203639"
-                    onError={(e) => handleError(e, "User+Image")}
-                  />
-                  <h3 className="text-lg font-bold text-inkwell">
-                    {review.name} -{" "}
-                    <span className="font-light">{review.city}</span>
-                  </h3>
-                  <p className="mt-2 text-sm text-inkwell font-light">
-                    "{review.review}"
-                  </p>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="section-card">
-            <h2 className="section-title">Payment Options Available</h2>
-            <div className="payment-container">
-              {paymentOptions.map((option, index) => (
-                <div key={index} className="payment-card">
-                  {option.image ? (
-                    <img
-                      src={option.image}
-                      alt={option.name}
-                      className="payment-image"
-                      onError={(e) =>
-                        handleError(e, option.name.replace(/ /g, "+"))
-                      }
-                    />
-                  ) : (
-                    <p className="text-lg font-semibold text-inkwell">
-                      {option.name}
-                    </p>
-                  )}
                 </div>
               ))}
             </div>
