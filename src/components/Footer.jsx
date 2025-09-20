@@ -29,12 +29,13 @@ const Footer = () => {
               <span
                 className="sitename fw-bold"
                 style={{
-                  fontSize: 30,
+                  fontSize: 26,
+                  color:"white",
                   fontFamily: "var(--heading-font)",
                   letterSpacing: 1,
                 }}
               >
-                Nazario
+                NAZARIO
               </span>
             </a>
             <p style={{ fontFamily: "var(--heading-font)" }}>
