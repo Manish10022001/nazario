@@ -1,10 +1,15 @@
 // export default React.memo(Navbar);
+
 import React, { useState, useRef, useEffect } from "react";
+
 import { Container, Form, FormControl } from "react-bootstrap";
+
 import { NavLink } from "react-router-dom";
 
 import Login from "./Login";
+
 import Signup from "./SignUp";
+import { FaBell } from 'react-icons/fa';
 
 import {
   FaUser,
@@ -14,49 +19,55 @@ import {
   FaBars,
   FaTimes,
 } from "react-icons/fa";
+
 import "../styles/navbar.css";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false); // Mobile menu state
+
   const [searchActive, setSearchActive] = useState(false); // Mobile search state
+
   const menuRef = useRef(null);
 
   const [currentPage, setCurrentPage] = useState(null);
+
   const closeAuth = () => setCurrentPage(null);
 
-  /* -------------------------------
-   🟢 Close mobile menu on outside click
-  ---------------------------------- */
+  /*Close mobile menu on outside click */
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
     };
+
     if (menuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
+
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [menuOpen]);
 
-  /* -------------------------------
-   🟢 Prevent background scroll when menu is open
-  ---------------------------------- */
+  /* Prevent background scroll when menu is open */
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "auto";
+
     return () => (document.body.style.overflow = "auto"); // Cleanup
   }, [menuOpen]);
 
-  /* -------------------------------
-   🟢 Auto-close mobile menu on desktop resize
-  ---------------------------------- */
+  /*  Auto-close mobile menu on desktop resize */
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 992) {
         setMenuOpen(false);
       }
     };
+
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -66,7 +77,9 @@ const Navbar = () => {
         className="navbar navbar-expand-lg navbar-light fixed-top border-bottom"
         style={{
           zIndex: 1040,
+
           background: "var(--Lunar-Eclipse)",
+
           marginTop: 0,
         }}
       >
@@ -74,14 +87,12 @@ const Navbar = () => {
           fluid
           className="d-flex justify-content-between align-items-center"
         >
-          {/* -------------------------------
-          🔵 Brand / Logo
-        -------------------------------- */}
+          {/* Brand / Logo */}
+
           <div className="navbar-logo">NAZARIO</div>
 
-          {/* -------------------------------
-          🔵 Desktop Navigation Links
-        -------------------------------- */}
+          {/*Desktop Navigation Links */}
+
           <div className="desktop-navlinks">
             <NavLink
               to="/home"
@@ -115,9 +126,7 @@ const Navbar = () => {
             </NavLink>
           </div>
 
-          {/* -------------------------------
-          🔵 Desktop Icons + Search
-        -------------------------------- */}
+          {/* Desktop Icons + Search */}
           <div className="desktop-icons">
             {/* Search bar */}
             <Form className="desktop-search">
@@ -129,6 +138,12 @@ const Navbar = () => {
               />
               <FaSearch className="search-icon-fixed" />
             </Form>
+
+            {/* 🔔 Notification Icon (Desktop) */}
+            <button className="icon-btn notification-btn">
+              <FaBell />
+              <span className="badge">2</span> {/* number of notifications */}
+            </button>
 
             {/* Action Icons wrapped in buttons for accessibility */}
             <button className="icon-btn" aria-label="Wishlist">
@@ -146,9 +161,7 @@ const Navbar = () => {
             </button>
           </div>
 
-          {/* -------------------------------
-          🔵 Mobile Icons
-        -------------------------------- */}
+          {/*Mobile Icons */}
           <div className="mobile-icons">
             <button
               className="icon-btn"
@@ -156,6 +169,13 @@ const Navbar = () => {
               onClick={() => setSearchActive(!searchActive)}
             >
               <FaSearch className="icon" />
+            </button>
+
+            {/* 🔔 Notification Icon (Mobile) */}
+
+            <button className="icon-btn notification-btn">
+              <FaBell className="icon" />
+              <span className="badge">2</span> {/* number of notifications */}
             </button>
 
             <button className="icon-btn" aria-label="Cart">
@@ -173,9 +193,7 @@ const Navbar = () => {
           </div>
         </Container>
 
-        {/* -------------------------------
-        🔵 Mobile Side Menu
-      -------------------------------- */}
+        {/*Mobile Side Menu */}
         <div ref={menuRef} className={`mobile-menu ${menuOpen ? "open" : ""}`}>
           {/* Menu Header */}
           <div className="menu-header">
@@ -202,6 +220,7 @@ const Navbar = () => {
                 className="login-btn"
                 onClick={() => {
                   setCurrentPage("signup");
+
                   setMenuOpen(false);
                 }}
               >
@@ -211,6 +230,7 @@ const Navbar = () => {
                 className="login-btn"
                 onClick={() => {
                   setCurrentPage("login");
+
                   setMenuOpen(false);
                 }}
               >
@@ -254,18 +274,28 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
       {(currentPage === "login" || currentPage === "signup") && (
         <div
           style={{
             position: "fixed",
+
             top: 0,
+
             left: 0,
+
             width: "100vw",
+
             height: "100vh",
+
             background: "rgba(0,0,0,0.3)",
+
             display: "flex",
+
             alignItems: "center",
+
             justifyContent: "center",
+
             zIndex: 1100,
           }}
           onClick={closeAuth}
@@ -274,6 +304,7 @@ const Navbar = () => {
             {currentPage === "login" && (
               <Login setCurrentPage={setCurrentPage} />
             )}
+
             {currentPage === "signup" && (
               <Signup setCurrentPage={setCurrentPage} />
             )}
