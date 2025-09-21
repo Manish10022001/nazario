@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/terms.css";
-
+import { Link } from "react-router-dom";
 const TermsOfService = () => {
   return (
     <>
@@ -217,27 +217,23 @@ const TermsOfService = () => {
                   </p>
                   <div className="prohibited-list">
                     <div className="prohibited-item">
-                      <i className="fa-solid fa-triangle-exclamation"></i>
                       <span>
                         Do anything that interferes with others' use of the
                         Service.
                       </span>
                     </div>
                     <div className="prohibited-item">
-                      <i className="fa-solid fa-triangle-exclamation"></i>
                       <span>
                         Pretend to be our company, an employee, or someone else.
                       </span>
                     </div>
                     <div className="prohibited-item">
-                      <i className="fa-solid fa-triangle-exclamation"></i>
                       <span>
                         Uploading, posting, or transmitting any viruses,
                         malware, or other malicious code.
                       </span>
                     </div>
                     <div className="prohibited-item">
-                      <i className="fa-solid fa-triangle-exclamation"></i>
                       <span>
                         Collect other users' information without their
                         permission.
@@ -320,13 +316,11 @@ const TermsOfService = () => {
                       If you have any questions about these Terms, please
                       contact us.
                     </p>
-                    <a
-                      href="mailto:contact@example.com"
-                      className="btn btn-lg px-4 contact-btn"
-                    >
+
+                    <Link to="/contact" className="btn btn-lg px-4 contact-btn">
                       <i className="fa-solid fa-paper-plane me-2"></i> Send us
                       an Email
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
