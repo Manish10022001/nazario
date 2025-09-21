@@ -10,11 +10,13 @@ const Home = () => {
   const bestsellerCarouselRef = useRef(null);
 
   const bannerImages = [
-    "https://s.alicdn.com/@sc04/kf/H45960f0a064d471ca4a2f82014390446D/147-Shiny-Anti-Blue-Light-Glasses-Computer-Metal-Girls-Designer-Optical-Wholesale-Eyewear-Frame-Spectacle-Eyeglasses-Frame.jpeg",
-    "https://c1.wallpaperflare.com/preview/87/543/579/eyeglasses-eyewear-table-dark.jpg",
-    "https://res.ygstatic.com/lifestyle/e16725/2.1800.1732672682-366.jpg",
-    "https://res.ygstatic.com/lifestyle/e15542/1.1800.1690283522-db7.jpg",
-    "https://res.ygstatic.com/lifestyle/e14014/2.1800.1646981045-6c4.jpg",
+    "https://media.licdn.com/dms/image/v2/C4D1BAQH_eZww6tg_iw/company-background_10000/company-background_10000/0/1596813366051/payne_glasses_cover?e=2147483647&v=beta&t=O2XBCNtUqgPvvlT83A6iFdacCjTUe24iqYjUUEaVC3A",
+    "https://res.ygstatic.com/lifestyle/e15825/1.1800.1706668398-3ae.jpg",
+    "https://thumbs.dreamstime.com/b/glasses-banner-top-view-copy-space-380444326.jpg",
+    "https://cdn.vooglam.com/media/catalog/product/o/m/om171265-03.jpg",
+    "https://www.shutterstock.com/image-photo/glasses-eye-isolated-on-white-260nw-2524401935.jpg",
+    "https://res.ygstatic.com/lifestyle/e15825/1.1800.1706668398-3ae.jpg",
+    "https://envision-eyecare.com/wp-content/uploads/2024/09/7-Reasons-To-Buy-Glasses-From-Your-Optometrist-Hero.jpg",
   ];
 
   const menCategoryImages = [
@@ -27,6 +29,12 @@ const Home = () => {
     "https://img.freepik.com/premium-photo/woman-wearing-glasses-sweater-is-standing-front-window_1311488-11416.jpg",
     "https://www.brides.com/thmb/4go50tez1zp2IfYTo9oOAdrOAsw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bridewearingglasses1-f46fff2cc5374e07b3f150805bc794f5.jpg",
     "https://i.pinimg.com/236x/1c/c0/ab/1cc0ab69696e63a3a68501b9cc18e533.jpg",
+  ];
+
+  const unisexCategoryImages = [
+    "https://www.shutterstock.com/image-photo/closeup-smiling-couple-wearing-spectacle-260nw-281200412.jpg",
+    "https://t4.ftcdn.net/jpg/05/08/46/47/360_F_508464745_JI5SCjGxTCQLWZmvxDUuTJb2Wk3HO4tI.jpg",
+    "https://www.shutterstock.com/image-photo/portrait-happy-couple-glasses-outdoors-600nw-2403158435.jpg",
   ];
 
   const trendingOffersImages = [
@@ -180,6 +188,14 @@ const Home = () => {
             >
               WOMEN
             </button>
+            <button
+              className={`category-tab ${
+                activeCategory === "unisex" ? "active" : ""
+              }`}
+              onMouseEnter={() => setActiveCategory("unisex")}
+            >
+              UNISEX
+            </button>
           </div>
 
           {/* Category Images */}
@@ -203,6 +219,18 @@ const Home = () => {
                     key={index}
                     src={image}
                     alt={`Women's Category ${index + 1}`}
+                    className="category-item-image"
+                  />
+                ))}
+              </div>
+            )}
+            {activeCategory === "unisex" && (
+              <div className="d-flex flex-wrap justify-content-center">
+                {unisexCategoryImages.map((image, index) => (
+                  <img
+                    key={index}
+                    src={image}
+                    alt={`Unisex Category ${index + 1}`}
                     className="category-item-image"
                   />
                 ))}
