@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import "../styles/privacy.css";
-
+import { Link } from "react-router-dom";
 const PrivacyPolicy = () => {
   return (
     <>
@@ -173,13 +173,10 @@ const PrivacyPolicy = () => {
                       If you have any questions about this Policy, please
                       contact us.
                     </p>
-                    <a
-                      href="mailto:contact@example.com"
-                      className="btn btn-lg px-4 pp-contact-btn"
-                    >
+                    <Link to="/contact" className="btn btn-lg px-4 contact-btn">
                       <i className="fa-solid fa-paper-plane me-2"></i> Send us
                       an Email
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
