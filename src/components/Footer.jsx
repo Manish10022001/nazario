@@ -21,8 +21,9 @@ const Footer = () => {
       >
         <Row className="gy-4">
           <Col lg={5} md={12} className="footer-about">
-            <a
-              href="/home"
+            <Nav.Link
+              as={Link}
+              to="/home"
               className="d-flex align-items-center mb-3 text-decoration-none"
             >
               <span
@@ -36,7 +37,7 @@ const Footer = () => {
               >
                 NAZARIO
               </span>
-            </a>
+            </Nav.Link>
             <p style={{ fontFamily: "var(--heading-font)" }}>
               Redefining vision with tech. Nazario SSO makes sign-in seamless,
               secure, and seriously smart — because your users deserve better.
