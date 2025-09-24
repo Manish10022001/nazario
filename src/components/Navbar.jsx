@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 import Login from "./Login";
 
 import Signup from "./SignUp";
-import { FaBell } from 'react-icons/fa';
+import { FaBell } from "react-icons/fa";
 
 import {
   FaUser,
@@ -89,7 +89,14 @@ const Navbar = () => {
         >
           {/* Brand / Logo */}
 
-          <div className="navbar-logo">NAZARIO</div>
+          <div className="navbar-logo">
+            <NavLink
+              to="/home"
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              NAZARIO
+            </NavLink>
+          </div>
 
           {/*Desktop Navigation Links */}
 
