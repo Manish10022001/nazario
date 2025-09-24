@@ -4,7 +4,6 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import TermsOfService from "./TermsOfService";
 import PrivacyPolicy from "./PrivacyPolicy";
 
-
 const Footer = () => {
   return (
     <footer
@@ -23,14 +22,14 @@ const Footer = () => {
         <Row className="gy-4">
           <Col lg={5} md={12} className="footer-about">
             <a
-              href="/"
+              href="/home"
               className="d-flex align-items-center mb-3 text-decoration-none"
             >
               <span
                 className="sitename fw-bold"
                 style={{
                   fontSize: 26,
-                  color:"white",
+                  color: "white",
                   fontFamily: "var(--heading-font)",
                   letterSpacing: 1,
                 }}

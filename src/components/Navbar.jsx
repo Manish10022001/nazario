@@ -92,6 +92,7 @@ const Navbar = () => {
           <div className="navbar-logo">
             <NavLink
               to="/home"
+              style={{ color: "inherit", textDecoration: "none" }}
               className={({ isActive }) => (isActive ? "active-link" : "")}
             >
               NAZARIO
