@@ -9,7 +9,6 @@ import { NavLink } from "react-router-dom";
 import Login from "./Login";
 
 import Signup from "./SignUp";
-import { FaBell } from "react-icons/fa";
 
 import {
   FaUser,
@@ -18,6 +17,8 @@ import {
   FaSearch,
   FaBars,
   FaTimes,
+  FaBell,
+  FaArrowLeft,
 } from "react-icons/fa";
 
 import "../styles/navbar.css";
@@ -52,10 +53,13 @@ const Navbar = () => {
   /* Prevent background scroll when menu is open */
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? "hidden" : "auto";
-
+    if (menuOpen || searchActive) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
     return () => (document.body.style.overflow = "auto"); // Cleanup
-  }, [menuOpen]);
+  }, [menuOpen, searchActive]);
 
   /*  Auto-close mobile menu on desktop resize */
 
@@ -63,6 +67,7 @@ const Navbar = () => {
     const handleResize = () => {
       if (window.innerWidth >= 992) {
         setMenuOpen(false);
+        setSearchActive(false);
       }
     };
 
@@ -89,15 +94,7 @@ const Navbar = () => {
         >
           {/* Brand / Logo */}
 
-          <div className="navbar-logo">
-            <NavLink
-              to="/home"
-              style={{ color: "inherit", textDecoration: "none" }}
-              className={({ isActive }) => (isActive ? "active-link" : "")}
-            >
-              NAZARIO
-            </NavLink>
-          </div>
+          <div className="navbar-logo">NAZARIO</div>
 
           {/*Desktop Navigation Links */}
 
@@ -281,6 +278,53 @@ const Navbar = () => {
             </NavLink>
           </div>
         </div>
+
+        {/* Mobile Search */}
+        {searchActive && (
+          <div className="search-overlay">
+            <div className="search-header">
+              <button
+                className="icon-btn"
+                onClick={() => setSearchActive(false)}
+                aria-label="Close search"
+              >
+                <FaArrowLeft className="back-icon" />
+              </button>
+              {/* <FaSearch className="search-icon" /> */}
+              <input
+                type="text"
+                placeholder="What are you looking for?"
+                autoFocus
+              />
+            </div>
+
+            <div className="trending-section">
+              <p className="trending-title">TRENDING AT NAZARIO</p>
+              <ul>
+                <li>
+                  <span className="trend-icon">👓</span>
+                  <span className="trend-text">eyeglasses</span>
+                  <FaArrowLeft className="trend-arrow" />
+                </li>
+                <li>
+                  <span className="trend-icon">🕶️</span>
+                  <span className="trend-text">sunglasses</span>
+                  <FaArrowLeft className="trend-arrow" />
+                </li>
+                <li>
+                  <span className="trend-icon">👁️</span>
+                  <span className="trend-text">contact lens</span>
+                  <FaArrowLeft className="trend-arrow" />
+                </li>
+                <li>
+                  <span className="trend-icon">🛒</span>
+                  <span className="trend-text">Eyewear Accessories</span>
+                  <FaArrowLeft className="trend-arrow" />
+                </li>
+              </ul>
+            </div>
+          </div>
+        )}
       </nav>
 
       {(currentPage === "login" || currentPage === "signup") && (
