@@ -1,12 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "../styles/Home.css";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Home = () => {
-  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [currentTrendingIndex, setCurrentTrendingIndex] = useState(0);
-  const [activeCategory, setActiveCategory] = useState("men");
+  const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const bestsellerCarouselRef = useRef(null);
 
   const bannerImages = [
@@ -19,22 +18,36 @@ const Home = () => {
     "https://envision-eyecare.com/wp-content/uploads/2024/09/7-Reasons-To-Buy-Glasses-From-Your-Optometrist-Hero.jpg",
   ];
 
+  const handlePrevBanner = () => {
+    setCurrentBannerIndex(
+      (prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length
+    );
+  };
+
+  const handleNextBanner = () => {
+    setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
+  };
+
+  useEffect(() => {
+    const bannerTimer = setInterval(() => {
+      setCurrentBannerIndex(
+        (prevIndex) => (prevIndex + 1) % bannerImages.length
+      );
+    }, 5000);
+
+    return () => clearInterval(bannerTimer);
+  }, [bannerImages.length]);
+
   const menCategoryImages = [
-    "https://in.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-lv-match-sunglasses--Z1414W_PM1_Cropped%20worn%20view.jpg",
-    "https://9f8e62d4.delivery.rocketcdn.me/wp-content/uploads/2023/07/Glasses-for-Oval-shape.jpg",
-    "https://i.pinimg.com/736x/ab/c2/fd/abc2fdc6dfea08a7bff4359e48255a96--eyeglasses-for-men-frames-mens-eyeglasses.jpg",
+    "https://img.freepik.com/premium-photo/portrait-handsome-guy-glasses-image-generated-by-ai_803126-1189.jpg?w=360",
   ];
 
   const womenCategoryImages = [
     "https://img.freepik.com/premium-photo/woman-wearing-glasses-sweater-is-standing-front-window_1311488-11416.jpg",
-    "https://www.brides.com/thmb/4go50tez1zp2IfYTo9oOAdrOAsw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/bridewearingglasses1-f46fff2cc5374e07b3f150805bc794f5.jpg",
-    "https://i.pinimg.com/236x/1c/c0/ab/1cc0ab69696e63a3a68501b9cc18e533.jpg",
   ];
 
   const unisexCategoryImages = [
-    "https://www.shutterstock.com/image-photo/closeup-smiling-couple-wearing-spectacle-260nw-281200412.jpg",
-    "https://t4.ftcdn.net/jpg/05/08/46/47/360_F_508464745_JI5SCjGxTCQLWZmvxDUuTJb2Wk3HO4tI.jpg",
-    "https://www.shutterstock.com/image-photo/portrait-happy-couple-glasses-outdoors-600nw-2403158435.jpg",
+    "https://www.shutterstock.com/image-photo/portrait-attractive-smiling-man-woman-600nw-2416429383.jpg",
   ];
 
   const trendingOffersImages = [
@@ -82,29 +95,11 @@ const Home = () => {
       name: "cateye",
       url: "https://m.media-amazon.com/images/I/61weJs6oGhL._UY350_.jpg",
     },
+    {
+      name: "Blue Lense",
+      url: "https://scitechdaily.com/images/Blue-Light-Glasses-777x518.jpg",
+    },
   ];
-
-  useEffect(() => {
-    const bannerTimer = setInterval(() => {
-      setCurrentBannerIndex(
-        (prevIndex) => (prevIndex + 1) % bannerImages.length
-      );
-    }, 3000);
-
-    return () => {
-      clearInterval(bannerTimer);
-    };
-  }, [bannerImages.length]);
-
-  const handlePrevBanner = () => {
-    setCurrentBannerIndex(
-      (prevIndex) => (prevIndex - 1 + bannerImages.length) % bannerImages.length
-    );
-  };
-
-  const handleNextBanner = () => {
-    setCurrentBannerIndex((prevIndex) => (prevIndex + 1) % bannerImages.length);
-  };
 
   const handlePrevTrending = () => {
     setCurrentTrendingIndex(
@@ -170,72 +165,32 @@ const Home = () => {
             <p className="subtitle">Find your perfect frame with us.</p>
           </div>
 
-          {/* Category Tabs */}
-          <div className="category-tabs">
-            <button
-              className={`category-tab ${
-                activeCategory === "men" ? "active" : ""
-              }`}
-              onMouseEnter={() => setActiveCategory("men")}
-            >
-              MEN
-            </button>
-            <button
-              className={`category-tab ${
-                activeCategory === "women" ? "active" : ""
-              }`}
-              onMouseEnter={() => setActiveCategory("women")}
-            >
-              WOMEN
-            </button>
-            <button
-              className={`category-tab ${
-                activeCategory === "unisex" ? "active" : ""
-              }`}
-              onMouseEnter={() => setActiveCategory("unisex")}
-            >
-              UNISEX
-            </button>
-          </div>
-
           {/* Category Images */}
-          <div className="category-images-container mt-4">
-            {activeCategory === "men" && (
-              <div className="d-flex flex-wrap justify-content-center">
-                {menCategoryImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Men's Category ${index + 1}`}
-                    className="category-item-image"
-                  />
-                ))}
-              </div>
-            )}
-            {activeCategory === "women" && (
-              <div className="d-flex flex-wrap justify-content-center">
-                {womenCategoryImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Women's Category ${index + 1}`}
-                    className="category-item-image"
-                  />
-                ))}
-              </div>
-            )}
-            {activeCategory === "unisex" && (
-              <div className="d-flex flex-wrap justify-content-center">
-                {unisexCategoryImages.map((image, index) => (
-                  <img
-                    key={index}
-                    src={image}
-                    alt={`Unisex Category ${index + 1}`}
-                    className="category-item-image"
-                  />
-                ))}
-              </div>
-            )}
+          <div className="category-images-container mt-4 d-flex justify-content-center gap-4">
+            <div className="category-block">
+              <img
+                src={menCategoryImages[0]}
+                alt="Men's Category"
+                className="category-image"
+              />
+              <div className="category-text-overlay">Men</div>
+            </div>
+            <div className="category-block">
+              <img
+                src={womenCategoryImages[0]}
+                alt="Women's Category"
+                className="category-image"
+              />
+              <div className="category-text-overlay">Women</div>
+            </div>
+            <div className="category-block">
+              <img
+                src={unisexCategoryImages[0]}
+                alt="Unisex Category"
+                className="category-image"
+              />
+              <div className="category-text-overlay">Unisex</div>
+            </div>
           </div>
         </section>
 
@@ -253,21 +208,6 @@ const Home = () => {
             <h3>4.9/5</h3>
             <p>On Google</p>
           </div>
-        </section>
-
-        {/* New Section: Our Philosophy */}
-        <section className="container my-5 our-philosophy">
-          <div className="title-container">
-            <h2>Our Philosophy</h2>
-          </div>
-          <p>
-            Nazario is more than just an eyewear brand; it's a statement. We
-            believe that glasses are a powerful form of self-expression. Our
-            curated collections are designed for the modern individual who
-            values elegance, quality, and technology. We are dedicated to
-            providing an unparalleled shopping experience, from our meticulously
-            crafted frames to our personalized, high-tech fitting solutions.
-          </p>
         </section>
 
         {/* 3. Trending Offers */}
