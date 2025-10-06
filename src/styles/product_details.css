@@ -82,3 +82,38 @@
     padding: 1rem;
   }
 }
+/* Forces a tall, vertical area the Canvas will fully fill */
+.eyewear3d-vertical {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.eyewear3d-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.eyewear3d-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* Optional: fixed tall ratio for a strong vertical feel */
+  aspect-ratio: 9 / 16;
+  max-height: 120vh; /* increase/decrease to control size */
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.eyewear3d-wrap canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+.eyewear3d-fixed-height {
+  max-height: 480px; /* roughly your specs height, adjust as needed */
+  height: 100%;
+  overflow: hidden;
+  position: relative; /* for Canvas sizing */
+}

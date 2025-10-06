@@ -1,10 +1,3 @@
-body {
-  margin: 0;
-  font-family: "Inter", sans-serif;
-  background-color: #dcd7c9;
-  color: #203639;
-}
-
 /* Helper classes for SVG sizing */
 .w-5 {
   width: 1 rem;

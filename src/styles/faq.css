@@ -1,15 +1,4 @@
 /* Shop theme tokens */
-:root {
-  --Inkwell: #203639;
-  --Lunar-Eclipse: #3F4E4F;
-  --Au-Lait: #A27858;
-  --Creme-Brulee: #DCD7C9;
-  --Accent: #3F4EA4;
-
-  --Radius: 16px;
-  --CardBorder: 1px solid rgba(0,0,0,.08);
-  --CardShadow: 0 6px 24px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.06);
-}
 
 /* Page wrapper aligned to shop */
 .faq-body {

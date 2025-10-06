@@ -1,8 +1,8 @@
 :root {
   --Inkwell: #203639;
   --Lunar-Eclipse: #3f4e4f;
-  --Au-Lait: #a27858;
-  --Creme-Brulee: #dcd7c9;
+  --Au-Lait: #ffffff;
+  --Yellow: #fff200;
   --Accent: #3f4ea4;
   --Border: rgba(0, 0, 0, 0.12);
 }
@@ -18,7 +18,7 @@ body,
   height: 100%;
 }
 body {
-  background: var(--Creme-Brulee);
+  background: var(--Au-Lait);
   color: var(--Inkwell);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
     sans-serif;
@@ -32,7 +32,7 @@ body {
   position: sticky;
   top: 64px;
   z-index: 20;
-  background: var(--Creme-Brulee);
+  background: var(--Yellow);
 }
 @media (min-width: 768px) {
   .subheader-sticky {
@@ -107,6 +107,17 @@ body {
   }
 }
 
+.btn-buynow {
+  background: linear-gradient(90deg, #bb3930, #d36969 90%);
+  border: none;
+  color: #fff;
+  border-radius: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.btn-buynow:hover {
+  background: linear-gradient(90deg, #bb3930, #d36969 90%);
+}
 .btn-addtocart {
   background: linear-gradient(90deg, #3f4ea4, #a27858 95%);
   border: none;
@@ -118,25 +129,10 @@ body {
 .btn-addtocart:hover {
   background: linear-gradient(90deg, #3059bb, #d39569 90%);
 }
-.btn-buynow {
-  background: linear-gradient(90deg, #d94330, #ff6f61 95%);
-  border: none;
-  color: #fff;
-  border-radius: 2.2rem;
-  font-weight: 700;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 12px rgba(217, 67, 48, 0.6);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-}
-
-.btn-buynow:hover {
-  background: linear-gradient(90deg, #ff6f61, #d94330 95%);
-  box-shadow: 0 6px 16px rgba(255, 111, 97, 0.8);
-  cursor: pointer;
-}
 
 .recommendation-view-button {
-  background: linear-gradient(135deg, var(--Lunar-Eclipse), var(--Inkwell));
+  background: linear-gradient(135deg, #ffeb3b, #ffffff);
+
   color: var(--Creme-Brulee);
   border: none;
   border-radius: 1.2rem;
@@ -145,11 +141,10 @@ body {
   transition: all 0.3s ease;
   font-size: 0.95rem;
 }
-
 .recommendation-view-button:hover,
 .recommendation-view-button:focus {
-  background: var(--Creme-Brulee);
-  color: var(--Lunar-Eclipse);
+  background: #dcd7c9;
+  color: #3f4e4f;
   box-shadow: 0 6px 16px rgba(32, 54, 57, 0.6);
   transform: translateY(-2px);
   outline: none;
@@ -329,4 +324,40 @@ body {
   .card .d-flex.flex-column.flex-grow-1 {
     padding: 16px 16px !important;
   }
+}
+
+/* Hover effect for product card */
+.product-card-hover {
+  transition: box-shadow 0.3s cubic-bezier(0.4, 2, 0.6, 1),
+    transform 0.3s cubic-bezier(0.4, 2, 0.6, 1);
+}
+.product-card-hover:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.13), 0 1.5px 8px rgba(0, 0, 0, 0.07);
+  transform: translateY(-4px) scale(1.025);
+  z-index: 2;
+}
+
+/* Image zoom on hover */
+.product-card-hover:hover .product-img-link img {
+  transform: scale(1.06);
+}
+
+/* Name color change on hover */
+.product-card-hover:hover .product-name-link h3 {
+  color: var(--Inkwell, #1a1a1a);
+  text-decoration: underline;
+}
+
+/* Make badge text always visible and bold */
+.badge-chip {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 0.95em;
+  letter-spacing: 0.01em;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  padding: 0.35em 0.8em;
+  border-radius: 12px;
+  background: #222 !important; /* fallback for non-promo badges */
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
