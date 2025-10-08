@@ -5,6 +5,8 @@ import Footer from "../components/Footer";
 import "../styles/product_details.css";
 import { useNavigate, Link } from "react-router-dom";
 import Recommendation from "../components/Recommendation";
+import Eyewear3D from "../components/Eyewear3D";
+import * as THREE from "three";
 import {
   ArrowLeft,
   Star,
@@ -112,7 +114,13 @@ const ProductDetailsPage = () => {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [selectedColor, setSelectedColor] = useState("Black");
-  const [selectedSize, setSelectedSize] = useState("Medium");
+  // Personalised lens options (moved to page-level per request)
+  const [personalisedLens, setPersonalisedLens] = useState(false);
+  const [personalOption, setPersonalOption] = useState("phone"); // 'phone' or 'upload'
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [prescriptionFile, setPrescriptionFile] = useState(null);
+  const [cartMessage, setCartMessage] = useState("");
+  // const [selectedSize, setSelectedSize] = useState("Medium");
   const [showLeftArrow, setShowLeftArrow] = useState(false);
   const [showRightArrow, setShowRightArrow] = useState(false);
   const scrollContainerRef = useRef(null);
@@ -129,7 +137,7 @@ const ProductDetailsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const REVIEWS_PER_PAGE = 5;
 
-  const sizes = ["Small", "Medium", "Large"];
+  // const sizes = ["Small", "Medium", "Large"];
 
   // Load reviews from localStorage on mount
   useEffect(() => {
@@ -339,6 +347,14 @@ const ProductDetailsPage = () => {
       image: productImages[0],
       colors: ["Black", "Green", "White"],
     },
+    {
+      id: "6",
+      name: "Sport Performance",
+      price: 3299,
+      originalPrice: 4499,
+      image: productImages[0],
+      colors: ["Black", "Green", "White"],
+    },
   ];
 
   const discount = Math.round(
@@ -372,6 +388,48 @@ const ProductDetailsPage = () => {
       );
     }
     return stars;
+  };
+
+  // Add to cart handler (stores simple cart in localStorage for demo)
+  const handleAddToCart = () => {
+    const cartItem = {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      color: selectedColor,
+      quantity,
+      personalisedLens,
+      personalOption,
+      phoneNumber: personalOption === "phone" ? phoneNumber : undefined,
+      prescriptionFileName:
+        personalOption === "upload" && prescriptionFile
+          ? prescriptionFile.name
+          : undefined,
+      addedAt: Date.now(),
+    };
+
+    try {
+      const raw = localStorage.getItem("cart");
+      const existing = raw ? JSON.parse(raw) : [];
+      existing.push(cartItem);
+      localStorage.setItem("cart", JSON.stringify(existing));
+      setCartMessage("Item added to cart");
+      setTimeout(() => setCartMessage(""), 3000);
+    } catch (err) {
+      console.error("Failed to add to cart", err);
+      setCartMessage("Failed to add to cart");
+      setTimeout(() => setCartMessage(""), 3000);
+    }
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    // navigate to cart/checkout if route exists; fallback to cart page
+    try {
+      navigate("/cart");
+    } catch (err) {
+      console.warn("Navigation to cart failed", err);
+    }
   };
 
   return (
@@ -449,7 +507,7 @@ const ProductDetailsPage = () => {
                 {/* Dynamic Rating Display */}
                 <div className="d-flex align-items-center mb-4">
                   <div className="me-2">{renderStars(avgRating)}</div>
-                  <span className="text-muted ms-2">
+                  <span className="text-grey ms-2">
                     {avgRating} ({reviews.length.toLocaleString()} reviews)
                   </span>
                 </div>
@@ -459,7 +517,7 @@ const ProductDetailsPage = () => {
                     <span className="h2 fw-bold text-dark me-3">
                       ₹{product.price.toLocaleString()}
                     </span>
-                    <span className="h5 text-muted text-decoration-line-through">
+                    <span className="h5 text-gray text-decoration-line-through">
                       ₹{product.originalPrice.toLocaleString()}
                     </span>
                     <span className="badge bg-success ms-2">
@@ -497,7 +555,7 @@ const ProductDetailsPage = () => {
               </div>
 
               {/* Size */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <h6 className="fw-semibold mb-3">
                   Size: <span className="fw-normal">{selectedSize}</span>
                 </h6>
@@ -516,7 +574,7 @@ const ProductDetailsPage = () => {
                     </button>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Quantity */}
               <div className="mb-4">
@@ -538,16 +596,118 @@ const ProductDetailsPage = () => {
                 </div>
               </div>
 
+              {/* Personalised Lens */}
+              <div className="mb-4">
+                <h6 className="fw-semibold mb-3">Personalised Lens</h6>
+                <div className="form-check form-switch mb-3">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    id="personalisedLensSwitch"
+                    checked={personalisedLens}
+                    onChange={(e) => setPersonalisedLens(e.target.checked)}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="personalisedLensSwitch"
+                  >
+                    {personalisedLens
+                      ? "Yes — personalise my lenses"
+                      : "No — standard lenses"}
+                  </label>
+                </div>
+
+                {personalisedLens && (
+                  <div className="ps-2">
+                    <div className="mb-2 small text-muted">
+                      How would you like to provide your prescription?
+                    </div>
+                    <div className="btn-group mb-3" role="group">
+                      <button
+                        type="button"
+                        className={`btn ${
+                          personalOption === "phone"
+                            ? "btn-primary"
+                            : "btn-outline-secondary"
+                        }`}
+                        onClick={() => setPersonalOption("phone")}
+                      >
+                        Provide phone/no.
+                      </button>
+                      <button
+                        type="button"
+                        className={`btn ${
+                          personalOption === "upload"
+                            ? "btn-primary"
+                            : "btn-outline-secondary"
+                        }`}
+                        onClick={() => setPersonalOption("upload")}
+                      >
+                        Upload prescription
+                      </button>
+                    </div>
+
+                    {personalOption === "phone" && (
+                      <div className="mb-3">
+                        <input
+                          type="tel"
+                          className="form-control"
+                          placeholder="Your phone number"
+                          value={phoneNumber}
+                          onChange={(e) => setPhoneNumber(e.target.value)}
+                        />
+                        <div className="form-text">
+                          We'll contact you to confirm lens preferences.
+                        </div>
+                      </div>
+                    )}
+
+                    {personalOption === "upload" && (
+                      <div className="mb-3">
+                        <input
+                          type="file"
+                          accept=".pdf,image/*"
+                          className="form-control"
+                          onChange={(e) =>
+                            setPrescriptionFile(
+                              e.target.files && e.target.files[0]
+                            )
+                          }
+                        />
+                        {prescriptionFile && (
+                          <div className="small mt-2">
+                            Selected: {prescriptionFile.name}
+                          </div>
+                        )}
+                        <div className="form-text">
+                          Accepts PDF, JPG, PNG. We'll review and reach out if
+                          anything's unclear.
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+
               {/* CTA Buttons */}
               <div className="mb-4">
                 <div className="d-grid gap-2 d-md-block">
-                  <button className="btn btn-addtocart btn-lg me-2 px-4">
+                  <button
+                    className="btn btn-addtocart btn-lg me-2 px-4"
+                    onClick={handleAddToCart}
+                  >
                     <ShoppingCart size={20} className="me-2" /> Add to Cart
                   </button>
-                  <button className="btn btn-buynow btn-lg px-4">
+                  <button
+                    className="btn btn-buynow btn-lg px-4"
+                    onClick={handleBuyNow}
+                  >
                     Buy Now
                   </button>
                 </div>
+                {cartMessage && (
+                  <div className="mt-3 alert alert-success">{cartMessage}</div>
+                )}
                 <div className="d-flex gap-3 mt-3">
                   <button className="btn btn-outline-secondary d-flex align-items-center">
                     <Heart size={16} className="me-1" /> Wishlist
@@ -578,11 +738,11 @@ const ProductDetailsPage = () => {
         </div>
 
         {/* Product Details */}
-        <div className="row g-4 mt-5">
+        <div className="row g-4 mt-5 align-items-start">
           <div className="col-12">
             <h2 className="h3 fw-bold mb-4">Product Details</h2>
           </div>
-          <div className="col-lg-6 order-2 order-lg-1">
+          {/* <div className="col-lg-6 order-2 order-lg-1">
             <div className="bg-white rounded-3 p-4 h-100 shadow-lg">
               <h3 className="h5 fw-bold mb-3">Description</h3>
               <ul className="list-unstyled">
@@ -593,8 +753,24 @@ const ProductDetailsPage = () => {
                 ))}
               </ul>
             </div>
+          </div> */}
+          {/* <div className="col-lg-6 ">
+            <EyewearScene3D />
+          </div> */}
+          {/* 3D Preview replaces Description */}
+          <div className="col-lg-3 order-2 order-lg-1">
+            <div
+              style={{
+                height: "420px",
+                overflow: "hidden",
+                position: "relative",
+              }}
+            >
+              <Eyewear3D colorHex={getColorCode(selectedColor)} />
+            </div>
           </div>
-          <div className="col-lg-6 order-1 order-lg-2">
+
+          <div className="col-lg-9 order-1 order-lg-2">
             <div className="bg-white rounded-3 p-4 h-100 shadow-lg">
               <h3 className="h5 fw-bold mb-3">Specifications</h3>
               <div className="table-responsive">
@@ -604,7 +780,7 @@ const ProductDetailsPage = () => {
                       ([key, value]) => (
                         <tr key={key}>
                           <td
-                            className="fw-semibold text-muted"
+                            className="fw-semibold text-dark"
                             style={{ width: "45%" }}
                           >
                             {key}
@@ -663,7 +839,7 @@ const ProductDetailsPage = () => {
                     <div className="d-flex justify-content-center mb-2">
                       {renderStars(avgRating, 20)}
                     </div>
-                    <p className="text-muted">
+                    <p className="text-dark">
                       Based on {reviews.length} reviews
                     </p>
                   </div>
@@ -697,7 +873,7 @@ const ProductDetailsPage = () => {
                             }}
                           ></div>
                         </div>
-                        <small className="text-muted">
+                        <small className="text-dark">
                           {distribution[rating] || 0}
                         </small>
                       </div>
@@ -843,7 +1019,7 @@ const ProductDetailsPage = () => {
                               <div className="me-2">
                                 {renderStars(review.rating, 16)}
                               </div>
-                              <small className="text-muted">
+                              <small className="text-gray">
                                 <Calendar size={12} className="me-1" />
                                 {new Date(review.date).toLocaleDateString()}
                               </small>
@@ -851,7 +1027,7 @@ const ProductDetailsPage = () => {
                           </div>
                         </div>
                         {review.review && (
-                          <p className="mb-2 text-muted">{review.review}</p>
+                          <p className="mb-2 text-gray">{review.review}</p>
                         )}
                         <div className="d-flex align-items-center">
                           <button className="btn btn-sm btn-outline-secondary">

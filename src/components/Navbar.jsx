@@ -83,7 +83,7 @@ const Navbar = () => {
         style={{
           zIndex: 1040,
 
-          background: "var(--Lunar-Eclipse)",
+          background: "#f7b733",
 
           marginTop: 0,
         }}

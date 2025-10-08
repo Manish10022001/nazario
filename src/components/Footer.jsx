@@ -10,7 +10,7 @@ const Footer = () => {
       id="footer"
       className="footer position-relative"
       style={{
-        backgroundColor: "var(--Lunar-Eclipse)",
+        backgroundColor: "#5858efff",
         color: "var(--Creme-Brulee)",
         fontSize: 14,
       }}
