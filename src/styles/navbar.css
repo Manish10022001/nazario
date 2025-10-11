@@ -1,16 +1,12 @@
-/* ================================
-   Root Variables
-   ================================ */
+/* Root Variables*/
 /* --nav-bg: #3f4f51; */
 :root {
   /* Navbar background color */
-  --nav-bg: #b29a71;
-  --text-color: white; /* Text/icons color */
+  --nav-bg: #fff200;
+  --text-color: BLACK; /* Text/icons color */
 }
 
-/* ================================
-   Navbar Base
-   ================================ */
+/*   Navbar Base*/
 .custom-navbar {
   background: var(--nav-bg);
   padding: 0.8rem 1rem;
@@ -19,18 +15,16 @@
   z-index: 1000;
 }
 
-/* ================================
-   Logo
-   ================================ */
+/* Logo*/
+
 .navbar-logo {
   font-size: 1.4rem;
   font-weight: bold;
   color: var(--text-color);
 }
+/* 
+Desktop Navlinks */
 
-/* ================================
-   Desktop Navlinks
-   ================================ */
 .desktop-navlinks {
   display: flex;
   gap: 2rem;
@@ -59,9 +53,9 @@
   transition: width 0.3s ease-in-out;
 }
 
-.desktop-navlinks a:hover {
+/* .desktop-navlinks a:hover {
   color: #ffffff;
-}
+} */
 
 .desktop-navlinks a:hover::after {
   width: 100%;
@@ -77,9 +71,7 @@
   background-color: #ffb347;
 }
 
-/* ================================
-   Desktop Search + Icons
-   ================================ */
+/* Desktop Search + Icons */
 .desktop-icons {
   display: flex;
   align-items: center;
@@ -118,7 +110,7 @@
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--nav-bg);
+  color: #b29a71;
 }
 
 /* Common icon styles */
@@ -129,9 +121,9 @@
   transition: color 0.3s;
 }
 
-.icon:hover {
+/* .icon:hover {
   color: #fff;
-}
+} */
 
 /* Reset styles for clickable icons */
 .icon-btn {
@@ -149,9 +141,7 @@
   outline: none;
 }
 
-/* ================================
-   Mobile Icons
-   ================================ */
+/* =====Mobile Icons======== */
 .mobile-icons {
   display: none;
   gap: 1rem;
@@ -175,16 +165,14 @@
   color: var(--nav-bg);
 }
 
-/* ================================
-   Mobile Menu (Slide-in)
-   ================================ */
+/* ====Mobile Menu (Slide-in) ======= */
 .mobile-menu {
   position: fixed;
   top: 0;
   right: 0;
   width: 262px;
   height: 100vh;
-  background: var(--nav-bg);
+  background: #fff449;
   color: var(--text-color);
   box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
 
@@ -211,22 +199,20 @@
   color: var(--text-color);
 }
 
-/* ================================
-   Mobile Account Section
-   ================================ */
+/* =========Mobile Account Section========= */
 .account-box {
   display: flex;
   align-items: center;
   gap: 0.8rem;
   margin: 1.5rem 0;
-  background: rgba(255, 255, 255, 0.05);
+  background: #e4db4a;
   padding: 1rem;
   border-radius: 10px;
 }
 
 .account-avatar {
   background: #fff;
-  color: var(--nav-bg);
+  color: black;
   border-radius: 50%;
   padding: 0.6rem;
   display: flex;
@@ -249,7 +235,7 @@
 
 .login-btn {
   background: #fff;
-  color: var(--nav-bg);
+  color: var(--text-color);
   border: none;
   padding: 0.4rem 1rem;
   border-radius: 6px;
@@ -262,9 +248,7 @@
   background: #f2f2f2;
 }
 
-/* ================================
-   Mobile Menu Links
-   ================================ */
+/* =========Mobile Menu Links===== */
 .menu-links {
   display: flex;
   flex-direction: column;
@@ -292,9 +276,7 @@
   padding-left: 0.4rem; /* Optional spacing */
 }
 
-/* ================================
-   Responsive Breakpoints
-   ================================ */
+/* =====Responsive Breakpoints==== */
 @media (max-width: 992px) {
   .desktop-navlinks,
   .desktop-icons {
@@ -348,7 +330,7 @@
 
 .notification-btn {
   position: relative;
-  color: #ffffff;
+  color: black;
   font-size: 1.2rem;
 }
 

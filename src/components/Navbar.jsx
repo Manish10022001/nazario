@@ -83,7 +83,7 @@ const Navbar = () => {
         style={{
           zIndex: 1040,
 
-          background: "#f7b733",
+          background: "#fff200",
 
           marginTop: 0,
         }}

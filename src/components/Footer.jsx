@@ -10,8 +10,8 @@ const Footer = () => {
       id="footer"
       className="footer position-relative"
       style={{
-        backgroundColor: "#5858efff",
-        color: "var(--Creme-Brulee)",
+        backgroundColor: "#fff200",
+        color: "#000000ff",
         fontSize: 14,
       }}
     >
@@ -54,7 +54,7 @@ const Footer = () => {
                       height: 40,
                       borderRadius: "50%",
                       border: "1px solid rgba(255, 255, 255, 0.3)",
-                      color: "rgba(255, 255, 255, 0.5)",
+                      color: "rgba(18, 18, 18, 0.5)",
                       transition: "0.3s",
                       fontSize: 16,
                     }}
@@ -63,7 +63,7 @@ const Footer = () => {
                       e.currentTarget.style.borderColor = "var(--Au-Lait)";
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.color = "rgba(255, 255, 255, 0.5)";
+                      e.currentTarget.style.color = "rgba(18, 18, 18, 0.5)";
                       e.currentTarget.style.borderColor =
                         "rgba(255, 255, 255, 0.3)";
                     }}
@@ -83,12 +83,12 @@ const Footer = () => {
                   key={item}
                   href="#"
                   className="px-0"
-                  style={{ color: "rgba(255, 255, 255, 0.7)" }}
+                  style={{ color: "rgba(18, 18, 18, 0.5)" }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.color = "var(--Au-Lait)")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)")
+                    (e.currentTarget.style.color = "rgba(18, 18, 18, 0.5)")
                   }
                 >
                   {item}
@@ -99,12 +99,12 @@ const Footer = () => {
                 as={Link}
                 to="/terms"
                 className="px-0"
-                style={{ color: "rgba(255, 255, 255, 0.7)" }}
+                style={{ color: "rgba(18, 18, 18, 0.5)" }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--Au-Lait)")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)")
+                  (e.currentTarget.style.color = "rgba(18, 18, 18, 0.5)")
                 }
               >
                 Terms of Service
@@ -113,12 +113,12 @@ const Footer = () => {
                 as={Link}
                 to="/privacy"
                 className="px-0"
-                style={{ color: "rgba(255, 255, 255, 0.7)" }}
+                style={{ color: "rgba(18, 18, 18, 0.5)" }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.color = "var(--Au-Lait)")
                 }
                 onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)")
+                  (e.currentTarget.style.color = "rgba(18, 18, 18, 0.5)")
                 }
               >
                 Privacy Policy
@@ -140,12 +140,12 @@ const Footer = () => {
                   key={item}
                   href="#"
                   className="px-0"
-                  style={{ color: "rgba(255, 255, 255, 0.7)" }}
+                  style={{ color: "rgba(18, 18, 18, 0.5)" }}
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.color = "var(--Au-Lait)")
                   }
                   onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)")
+                    (e.currentTarget.style.color = "rgba(18, 18, 18, 0.5)")
                   }
                 >
                   {item}
@@ -170,7 +170,7 @@ const Footer = () => {
             </p>
           </Col>
         </Row>
-      </Container>
+      </Container>;
 
       <Container
         className="copyright text-center py-3"
